@@ -20,5 +20,5 @@
 /nexus/RegisterRunAction DefaultRunAction
 
 /nexus/RegisterMacro macros/NEXT100_208Tl.config.mac
-
+/nexus/persistency/safename true
 

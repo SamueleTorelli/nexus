@@ -30,3 +30,5 @@
 /Actions/SingleDecaySteppingAction/DefineSingle 214 83
 
 /nexus/persistency/output_file output/onubpbp_214Bi_background
+/nexus/persistency/safename true
+

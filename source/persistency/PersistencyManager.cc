@@ -33,7 +33,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include <string>
+#include <fstream>
 
 using namespace nexus;
 
@@ -47,10 +47,11 @@ PersistencyManagerBase(), msg_(0), output_file_("nexus_out"), ready_(false),
   interacting_evt_(false), save_ie_numb_(false), event_type_("other"),
   saved_evts_(0), interacting_evts_(0), pmt_bin_size_(-1), sipm_bin_size_(-1),
   nevt_(0), start_id_(0), first_evt_(true), h5writer_(0),
-  str_counter_(0), save_str_(true), particles_(true)
+  str_counter_(0), save_str_(true), particles_(true), safename_(false)
 {
   msg_ = new G4GenericMessenger(this, "/nexus/persistency/");
   msg_->DeclareProperty("output_file", output_file_, "Path of output file.");
+  msg_->DeclareProperty("safename", safename_, "Safe name option (true or false).");
   msg_->DeclareProperty("event_type", event_type_,
                         "Type of event: bb0nu, bb2nu, background.");
   msg_->DeclareMethod  ("start_id", &PersistencyManager::SetStartID,
@@ -82,6 +83,30 @@ void PersistencyManager::OpenFile()
   if (!h5writer_) {
     h5writer_ = new HDF5Writer();
     G4String hdf5file = output_file_ + ".h5";
+    
+    // If safename is enabled, check if file exists and append _0, _1, etc.
+    if (safename_) {
+      G4String base_file = hdf5file;
+      int counter = 0;
+      std::ifstream test_file(hdf5file);
+      // While file exists, try next number
+      while (test_file.is_open()) {
+        test_file.close();
+        // Extract base name without extension
+        size_t dot_pos = base_file.find_last_of(".");
+        G4String name_without_ext = (dot_pos != std::string::npos) ? 
+          base_file.substr(0, dot_pos) : base_file;
+        G4String ext = (dot_pos != std::string::npos) ? 
+          base_file.substr(dot_pos) : "";
+        // Construct new filename with counter
+        std::stringstream ss;
+        ss << name_without_ext << "_" << counter << ext;
+        hdf5file = ss.str();
+        test_file.open(hdf5file);
+        counter++;
+      }
+    }
+    
     h5writer_->Open(hdf5file, store_steps_, save_str_);
     return;
   } else {
