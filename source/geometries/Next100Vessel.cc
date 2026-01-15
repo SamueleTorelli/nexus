@@ -342,6 +342,8 @@ namespace nexus {
     } else if  (gas_ == "XeHe") {
       vessel_gas_mat = materials::GXeHe(pressure_, 300. * kelvin,
 					    xe_perc_, helium_mass_num_);
+    } else if  (gas_ == "LXe") {
+      vessel_gas_mat = materials::LXe();
     } else {
       G4Exception("[Next100Vessel]", "Construct()", FatalException,
 		  "Unknown kind of xenon, valid options are: "
@@ -353,6 +355,8 @@ namespace nexus {
                                                                  sc_yield_,
                                                                  e_lifetime_));
 
+    
+    
     G4LogicalVolume* vessel_gas_logic =
       new G4LogicalVolume(vessel_gas_final_solid, vessel_gas_mat, "VESSEL_GAS");
 
@@ -482,6 +486,7 @@ namespace nexus {
     perc_endcap_vol_    = 2.*endcap_vol / vessel_vol;
     perc_ep_flange_vol_ = flange_ep_vol / vessel_vol;
     perc_tp_flange_vol_ = flange_tp_vol / vessel_vol;
+
   }
 
 

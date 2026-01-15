@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// nexus | AnalysisSteppingAction.cc
+// nexus | SingleDecaySteppingAction.cc
 //
 // This class allows the user to print the total number of photons detected by
 // all kinds of photosensors at the end of the run.
@@ -9,7 +9,7 @@
 // The  NEXT Collaboration
 // ----------------------------------------------------------------------------
 
-#include "AnalysisSteppingAction.h"
+#include "SingleDecaySteppingAction.h"
 #include "FactoryBase.h"
 
 #include <G4Step.hh>
@@ -21,16 +21,36 @@
 
 using namespace nexus;
 
-REGISTER_CLASS(AnalysisSteppingAction, G4UserSteppingAction)
+REGISTER_CLASS(SingleDecaySteppingAction, G4UserSteppingAction)
 
-AnalysisSteppingAction::AnalysisSteppingAction(): G4UserSteppingAction()
+SingleDecaySteppingAction::SingleDecaySteppingAction():
+  G4UserSteppingAction(),
+  msg_(nullptr),
+  z_(-9),
+  a_(-9)
 {
+  msg_ = new G4GenericMessenger(this, "/Actions/SingleDecaySteppingAction/",
+                                "Control commands for SingleDecaySteppingAction");
+
+  G4GenericMessenger::Command& define_single_cmd =
+    msg_->DeclareMethod("DefineSingle",
+                        &SingleDecaySteppingAction::DefineSingle,
+                        "Set the mass number (A) and atomic number (Z) of the ion to keep");
+  define_single_cmd.SetParameterName("A", false);
+  define_single_cmd.SetParameterName("Z", false);
 }
 
-
-
-AnalysisSteppingAction::~AnalysisSteppingAction()
+void SingleDecaySteppingAction::DefineSingle(G4int a, G4int z)
 {
+  a_ = a;
+  z_ = z;
+}
+
+SingleDecaySteppingAction::~SingleDecaySteppingAction()
+{
+  delete msg_;
+  msg_ = nullptr;
+
   G4double total_counts = 0;
   detectorCounts::iterator it = my_counts_.begin();
   while (it != my_counts_.end()) {
@@ -42,32 +62,23 @@ AnalysisSteppingAction::~AnalysisSteppingAction()
 }
 
 
-
-void AnalysisSteppingAction::UserSteppingAction(const G4Step* step)
+void SingleDecaySteppingAction::UserSteppingAction(const G4Step* step)
 {
   G4ParticleDefinition* pdef = step->GetTrack()->GetDefinition();
 
-  G4cout << "here" << G4endl;
-  
+  if (pdef->GetParticleType() == "nucleus") {
+    // The particle is an ion
+    // Check if its atomic number or mass number do not match the configured (a,z)
+    G4int A = pdef->GetAtomicMass();
+    G4int Z = pdef->GetAtomicNumber();
+    if (A != a_ || Z != z_ ) {
+      step->GetTrack()->SetTrackStatus(fStopAndKill);
+      return;
+    }
+  }
+
   //Check whether the track is an optical photon
   if (pdef != G4OpticalPhoton::Definition()) return;
-
-  /*
-  // example of information one can access about optical photons
-
-  G4Track* track = step->GetTrack();
-  G4int pid = track->GetParentID();
-  G4int tid = track->GetTrackID();
-  G4StepPoint* point1 = step->GetPreStepPoint();
-  G4StepPoint* point2 = step->GetPostStepPoint();
-  G4TouchableHandle touch1 = point1->GetTouchableHandle();
-  G4TouchableHandle touch2 = point2->GetTouchableHandle();
-  G4String vol1name = touch1->GetVolume()->GetName();
-  G4String vol2name = touch2->GetVolume()->GetName();
-
-  G4String proc_name = step->GetPostStepPoint()->GetProcessDefinedStep()->GetProcessName();
-  G4int copy_no = step->GetPostStepPoint()->GetTouchable()->GetReplicaNumber(1);
-  */
 
   // Retrieve the pointer to the optical boundary process.
   // We do this only once per run defining our local pointer as static.

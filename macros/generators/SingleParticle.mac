@@ -6,7 +6,7 @@
 ## The NEXT Collaboration
 ## ----------------------------------------------------------------------------
 
-/Generator/SingleParticle/particle e-
-/Generator/SingleParticle/min_energy 1. MeV
-/Generator/SingleParticle/max_energy 2. MeV
-/Generator/SingleParticle/region CENTER
+/Generator/SingleParticle/particle gamma
+/Generator/SingleParticle/min_energy 2.358 MeV
+/Generator/SingleParticle/max_energy 2.758 MeV
+/Generator/SingleParticle/region CHAMBER

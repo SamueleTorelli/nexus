@@ -292,8 +292,20 @@ namespace materials {
       return mat;
   }
 
+  G4Material* Copper()
+  {
+    // Copper metal, standard density.
+    G4String name = "Copper";
+    G4Material* mat = G4Material::GetMaterial(name, false);
 
-
+    if (mat == 0) {
+      G4NistManager* nist = G4NistManager::Instance();
+      G4Element* Cu = nist->FindOrBuildElement("Cu");
+      mat = new G4Material(name, 8.96*g/cm3, 1, kStateSolid);
+      mat->AddElement(Cu, 1);
+    }
+    return mat;
+  }
 
 
   G4Material* Steel()
@@ -697,7 +709,6 @@ namespace materials {
 
     return mat;
   }
-
 
   G4Material* FR4()
   {

@@ -1,0 +1,23 @@
+## ----------------------------------------------------------------------------
+## nexus | CylindricChamber_bb0nu.init.mac
+##
+## Initialization macro to simulate bb0nu decays in a generic geometry of a GXe or LXe cylinder enclosed in a vessel.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/control/execute macros/physics/DefaultPhysicsList.mac
+
+/nexus/RegisterGeometry CylindricChamber
+
+/nexus/RegisterGenerator Decay0Interface
+
+/nexus/RegisterPersistencyManager PersistencyManager
+
+/nexus/RegisterTrackingAction DefaultTrackingAction
+/nexus/RegisterEventAction DefaultEventAction
+/nexus/RegisterRunAction DefaultRunAction
+
+/nexus/RegisterMacro macros/CylindricChamber_bb0nu.config.mac
+
+

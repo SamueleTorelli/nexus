@@ -1,0 +1,32 @@
+## ----------------------------------------------------------------------------
+## nexus | CylindricChamber_bb0nu.config.mac
+##
+## Configuration macro to simulate bb0nu decays in a generic geometry of a GXe or LXe cylinder enclosed in a vessel.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+
+/nexus/random_seed 128334
+
+##### GEOMETRY #####
+/Geometry/Next100/elfield false
+/Geometry/Next100/max_step_size 1. mm
+
+##### GENERATOR #####
+/Generator/IonGenerator/atomic_number 81
+/Generator/IonGenerator/mass_number 208
+/Generator/IonGenerator/region VESSEL
+
+/control/execute macros/physics/DefaultPhysicsList.mac
+
+/Actions/DefaultEventAction/min_energy 200 keV
+/Actions/DefaultEventAction/max_energy 2800 keV
+/Actions/SingleDecaySteppingAction/DefineSingle 208 81
+
+/nexus/persistency/output_file onubpbp_208Tl_background

@@ -23,16 +23,21 @@ G4double GXeDensity(G4double pressure)
   // Values are taken from the reference file nexus/data/gxe_density_table.txt
   // (which, in turn, is downloaded from https://webbook.nist.gov/chemistry/fluid).
   // We assume a linear interpolation between any pair of values in the database.
+  // Values greather than 30 from https://www.researchgate.net/publication/304495110_Design_Proposal_of_Tigris_-_a_CubeSat_Ion_Propulsion_System
 
   G4double density;
 
-  const G4int n_pressures = 6;
+  const G4int n_pressures = 9;
   G4double data[n_pressures][2] = {{  1.0 * bar,   5.419 * kg/m3},
                                    {  5.0 * bar,  27.721 * kg/m3},
                                    { 10.0 * bar,  57.160 * kg/m3},
                                    { 13.5 * bar,  78.949 * kg/m3},
                                    { 20.0 * bar, 122.510 * kg/m3},
-                                   { 30.0 * bar, 199.920 * kg/m3}};
+                                   { 30.0 * bar, 199.920 * kg/m3},
+                                   { 40.0 * bar, 275.797 * kg/m3},
+                                   {45.0 * bar, 328.852 * kg/m3},
+                                   {50.0 * bar, 391.364 * kg/m3}
+                                  };
   G4bool found = false;
 
   for (G4int i=0; i<n_pressures-1; ++i) {

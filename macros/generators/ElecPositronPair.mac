@@ -1,0 +1,11 @@
+## ----------------------------------------------------------------------------
+## nexus | ElecPositronPair.mac
+##
+## Ancillary macro to define the parameters of the electron positron pair generator.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/Generator/ElecPositronPair/min_energy 1 keV
+/Generator/ElecPositronPair/max_energy 2.8 MeV
+/Generator/ElecPositronPair/region XENON

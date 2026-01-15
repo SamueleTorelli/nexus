@@ -32,6 +32,14 @@ namespace nexus {
   private:
     /// Messenger for the definition of control commands
     G4GenericMessenger* msg_;
+    G4String target_;
+    G4double sc_yield_, e_lifetime_;
+    G4double pressure_, temperature_;
+    // Chamber geometry parameters
+    G4double chamber_diam_;
+    G4double chamber_length_;
+    G4double chamber_thickn_;
+    G4double step_max_;
   };
 
 } // end namespace nexus

@@ -1,0 +1,26 @@
+## ----------------------------------------------------------------------------
+## nexus | nexus_example1.config.mac
+##
+## Configuration macro to simulate individual particles
+## in a sphere of xenon.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+
+/Geometry/CylindricChamber/targetmaterial GXe
+/Geometry/CylindricChamber/pressure 13.5 bar
+/Geometry/CylindricChamber/step_max 0.5 mm #in millimeters
+
+/Generator/DoublePositronPair/region ACTIVE
+
+/control/execute macros/generators/DoublePositronPair.mac
+
+/control/execute macros/physics/IonizationElectron.mac
+
+/nexus/persistency/output_file 2nubpbp13p5bar_50000.nexus

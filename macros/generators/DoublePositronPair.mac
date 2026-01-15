@@ -1,0 +1,11 @@
+## ----------------------------------------------------------------------------
+## nexus | myDoublePositronPair.mac
+##
+## Ancillary macro to define the parameters of the double positron generator.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/Generator/DoublePositronPair/min_energy 1 keV
+/Generator/DoublePositronPair/max_energy 2.8 MeV
+/Generator/DoublePositronPair/region ACTIVE

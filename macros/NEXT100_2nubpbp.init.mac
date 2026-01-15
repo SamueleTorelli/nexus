@@ -1,0 +1,22 @@
+## ----------------------------------------------------------------------------
+## nexus | nexus_example1.init.mac
+##
+## Initialization macro to simulate individual particles
+## in a sphere of xenon.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/control/execute macros/physics/DefaultPhysicsList.mac
+
+/nexus/RegisterGeometry CylindricChamber
+
+/nexus/RegisterGenerator DoublePositronPairGenerator
+
+/nexus/RegisterPersistencyManager PersistencyManager
+
+/nexus/RegisterRunAction DefaultRunAction
+/nexus/RegisterEventAction DefaultEventAction
+/nexus/RegisterTrackingAction DefaultTrackingAction
+
+/nexus/RegisterMacro macros/NEXT100_2nubpbp.config.mac 
