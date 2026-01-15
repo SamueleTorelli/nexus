@@ -12,11 +12,11 @@
 
 /process/em/verbose 0
 
-/nexus/random_seed 128334
+/nexus/random_seed -1
 
 ##### GEOMETRY #####
 /Geometry/Next100/elfield false
-/Geometry/Next100/max_step_size 1. mm
+/Geometry/Next100/max_step_size 2. mm
 
 ##### GENERATOR #####
 /Generator/IonGenerator/atomic_number 83
@@ -26,7 +26,7 @@
 /control/execute macros/physics/DefaultPhysicsList.mac
 
 /Actions/DefaultEventAction/min_energy 200 keV
-/Actions/DefaultEventAction/max_energy 2800 keV
+/Actions/DefaultEventAction/max_energy 5000 keV
 /Actions/SingleDecaySteppingAction/DefineSingle 214 83
 
-/nexus/persistency/output_file onubpbp_214Bi_background
+/nexus/persistency/output_file output/onubpbp_214Bi_background
