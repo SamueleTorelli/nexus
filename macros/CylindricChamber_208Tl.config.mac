@@ -25,14 +25,14 @@
 #/Generator/SingleParticle/max_energy 2.458 MeV
 #/Generator/SingleParticle/region CHAMBER
 
-/Generator/IonGenerator/atomic_number 83
-/Generator/IonGenerator/mass_number 214
+/Generator/IonGenerator/atomic_number 81
+/Generator/IonGenerator/mass_number 208
 /Generator/IonGenerator/region CHAMBER
 
 /control/execute macros/physics/DefaultPhysicsList.mac
 
-/Actions/DefaultEventAction/min_energy 1000 keV
-/Actions/DefaultEventAction/max_energy 2850 keV
-/Actions/SingleDecaySteppingAction/DefineSingle 214 83
+/Actions/DefaultEventAction/min_energy 2300 keV
+/Actions/DefaultEventAction/max_energy 2800 keV
+/Actions/SingleDecaySteppingAction/DefineSingle 208 81
 
-/nexus/persistency/output_file output/GXe_214Bi_15bar_200mum_step_300000.next
+/nexus/persistency/output_file output/GXe_208Tl_15bar_200mum_step_300000.next

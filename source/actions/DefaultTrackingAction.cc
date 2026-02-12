@@ -21,6 +21,8 @@
 #include <G4Trajectory.hh>
 #include <G4ParticleDefinition.hh>
 #include <G4OpticalPhoton.hh>
+#include <G4Gamma.hh>
+#include <G4ios.hh>
 
 using namespace nexus;
 
@@ -43,6 +45,9 @@ void DefaultTrackingAction::PreUserTrackingAction(const G4Track *track)
     fpTrackingManager->SetStoreTrajectory(false);
     return;
   }
+
+  //if (track->GetDefinition() == G4Gamma::Definition())
+  //  G4cout << "Photon kinetic energy: " << track->GetKineticEnergy() / CLHEP::keV << " keV" << G4endl;
 
   // Create a new trajectory associated to the track.
   // N.B. If the processesing of a track is interrupted to be resumed

@@ -63,6 +63,9 @@ namespace materials {
   // Stainless Steel (grade 304L)
   G4Material* Steel();
 
+  // Copper material  
+  G4Material* myCopper();
+
   // Stainless steel grade 316Ti
   G4Material* Steel316Ti();
 
@@ -112,7 +115,7 @@ namespace materials {
   G4Material* PE500();
 
   /// Selenium Hexafluoride
-    G4Material* SeF6(G4double pressure=STP_Pressure,
+  G4Material* SeF6(G4double pressure=STP_Pressure,
 			               G4double temperature=STP_Temperature);
 
   // FR4

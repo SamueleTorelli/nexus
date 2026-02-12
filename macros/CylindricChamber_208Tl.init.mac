@@ -20,6 +20,6 @@
 /nexus/RegisterEventAction DefaultEventAction
 /nexus/RegisterRunAction DefaultRunAction
 
-/nexus/RegisterMacro macros/CylindricChamber_214Bi.config.mac
+/nexus/RegisterMacro macros/CylindricChamber_208Tl.config.mac
 
 

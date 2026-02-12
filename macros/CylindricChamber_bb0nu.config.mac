@@ -17,8 +17,8 @@
 #/Geometry/CylindricChamber/targetmaterial LXe
 
 /Geometry/CylindricChamber/targetmaterial GXe
-/Geometry/CylindricChamber/pressure 30 bar
-/Geometry/CylindricChamber/step_max 0.1 mm #in millimeters
+/Geometry/CylindricChamber/pressure 15 bar
+/Geometry/CylindricChamber/step_max 0.2 mm #in millimeters
 
 # use C++ translation of DECAY0
 /Generator/Decay0Interface/inputFile none
@@ -35,7 +35,7 @@
 
 /control/execute macros/physics/IonizationElectron.mac
 
-/Actions/DefaultEventAction/min_energy 2100 keV
-/Actions/DefaultEventAction/max_energy 2500 keV
+/Actions/DefaultEventAction/min_energy 2300 keV
+/Actions/DefaultEventAction/max_energy 2800 keV
 
-/nexus/persistency/output_file 0nubb/GXe_0nubb_30bar_100mum_step_p3.next
+/nexus/persistency/output_file output/GXe_0nubb_15bar_200mum_step_20000.next

@@ -23,6 +23,9 @@
 #include <G4PVPlacement.hh>
 #include <G4SDManager.hh>
 #include <G4UserLimits.hh>
+#include <G4Material.hh>
+#include <G4Element.hh>
+#include <G4NistManager.hh>
 
 #include <CLHEP/Units/SystemOfUnits.h>
 #include <CLHEP/Units/PhysicalConstants.h>
@@ -75,13 +78,22 @@ namespace nexus {
   void CylindricChamber::Construct()
   {
     // CHAMBER ///////////////////////////////////////////////////////
+    G4String name = "Copper";
+    G4Material* mat = G4Material::GetMaterial(name, false);
+
+    if (mat == 0) {
+      G4NistManager* nist = G4NistManager::Instance();
+      G4Element* Cu = nist->FindOrBuildElement("Cu");
+      mat = new G4Material(name, 8.96*g/cm3, 1, kStateSolid);
+      mat->AddElement(Cu, 1);
+    }
 
     G4Tubs* chamber_solid =
       new G4Tubs("CHAMBER", 0., (chamber_diam_/2. + chamber_thickn_),
         (chamber_length_/2. + chamber_thickn_), 0., twopi);
 
     G4LogicalVolume* chamber_logic =
-      new G4LogicalVolume(chamber_solid, materials::Steel(), "CHAMBER");
+      new G4LogicalVolume(chamber_solid, mat, "CHAMBER");
 
     this->SetLogicalVolume(chamber_logic);
 

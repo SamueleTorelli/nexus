@@ -8,18 +8,15 @@
 
 /control/execute macros/physics/DefaultPhysicsList.mac
 
-/nexus/RegisterGeometry CylindricChamber
+/nexus/RegisterGeometry Next100
 
-#/nexus/RegisterGenerator SingleParticleGenerator
 /nexus/RegisterGenerator IonGenerator
 
 /nexus/RegisterPersistencyManager PersistencyManager
 
-/nexus/RegisterSteppingAction SingleDecaySteppingAction
+#/nexus/RegisterSteppingAction DefaultSteppingAction
 /nexus/RegisterTrackingAction DefaultTrackingAction
 /nexus/RegisterEventAction DefaultEventAction
 /nexus/RegisterRunAction DefaultRunAction
 
-/nexus/RegisterMacro macros/CylindricChamber_214Bi.config.mac
-
-
+/nexus/RegisterMacro macros/NEXT100_241Am.config.mac

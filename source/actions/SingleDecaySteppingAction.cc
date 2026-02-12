@@ -71,8 +71,20 @@ void SingleDecaySteppingAction::UserSteppingAction(const G4Step* step)
     // Check if its atomic number or mass number do not match the configured (a,z)
     G4int A = pdef->GetAtomicMass();
     G4int Z = pdef->GetAtomicNumber();
-    if (A != a_ || Z != z_ ) {
-      step->GetTrack()->SetTrackStatus(fStopAndKill);
+    G4String particle_name = pdef->GetParticleName();
+    G4bool has_square_brackets = (particle_name.find("[") != G4String::npos);
+
+    // Kill only ions without square-bracket qualifiers in their name (e.g. "Po214"),
+    // but keep those with square brackets (e.g. "Po214[1729.609]").
+    if ( (A != a_ || Z != z_) && !has_square_brackets ) {
+      /*
+      G4cout << "[SingleDecaySteppingAction] Killing ion '"
+             << particle_name
+             << "' with (A,Z)=(" << A << "," << Z
+             << ") vs ("
+             << a_ << "," << z_ << ")" << G4endl;
+      */
+             step->GetTrack()->SetTrackStatus(fStopAndKill);
       return;
     }
   }

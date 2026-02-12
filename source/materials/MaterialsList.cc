@@ -292,7 +292,8 @@ namespace materials {
       return mat;
   }
 
-  G4Material* Copper()
+  // This is not working IDK why
+  G4Material* myCopper()
   {
     // Copper metal, standard density.
     G4String name = "Copper";

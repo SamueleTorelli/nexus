@@ -10,16 +10,16 @@
 
 /nexus/RegisterGeometry CylindricChamber
 
-#/nexus/RegisterGenerator SingleParticleGenerator
-/nexus/RegisterGenerator IonGenerator
+/nexus/RegisterGenerator SingleParticleGenerator
+#/nexus/RegisterGenerator IonGenerator
 
 /nexus/RegisterPersistencyManager PersistencyManager
 
-/nexus/RegisterSteppingAction SingleDecaySteppingAction
+#/nexus/RegisterSteppingAction SingleDecaySteppingAction
 /nexus/RegisterTrackingAction DefaultTrackingAction
 /nexus/RegisterEventAction DefaultEventAction
 /nexus/RegisterRunAction DefaultRunAction
 
-/nexus/RegisterMacro macros/CylindricChamber_214Bi.config.mac
+/nexus/RegisterMacro macros/CylindricChamber_2204keV.config.mac
 
 
