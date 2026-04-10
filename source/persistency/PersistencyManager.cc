@@ -15,6 +15,7 @@
 #include "SensorSD.h"
 #include "NexusApp.h"
 #include "DetectorConstruction.h"
+#include "GammaInteractionSteppingAction.h"
 #include "SaveAllSteppingAction.h"
 #include "GeometryBase.h"
 #include "HDF5Writer.h"
@@ -137,8 +138,13 @@ G4bool PersistencyManager::Store(const G4Event* event)
     if (store_steps_) {
       SaveAllSteppingAction* sa = (SaveAllSteppingAction*)
         G4RunManager::GetRunManager()->GetUserSteppingAction();
-      sa->Reset();
+      if (sa) sa->Reset();
     }
+    const G4UserSteppingAction* step_action =
+      G4RunManager::GetRunManager()->GetUserSteppingAction();
+    GammaInteractionSteppingAction* gisa = dynamic_cast<GammaInteractionSteppingAction*>
+      (const_cast<G4UserSteppingAction*>(step_action));
+    if (gisa) gisa->Reset();
     return false;
   }
 
@@ -151,6 +157,8 @@ G4bool PersistencyManager::Store(const G4Event* event)
 
   if (store_steps_)
     StoreSteps();
+
+  StoreGammaInteractions();
 
   // Store the trajectories of the event
   if (particles_) {
@@ -168,6 +176,53 @@ G4bool PersistencyManager::Store(const G4Event* event)
   StoreCurrentEvent(true);
 
   return true;
+}
+
+
+void PersistencyManager::StoreGammaInteractions()
+{
+  const G4UserSteppingAction* step_action =
+    G4RunManager::GetRunManager()->GetUserSteppingAction();
+  GammaInteractionSteppingAction* gisa = dynamic_cast<GammaInteractionSteppingAction*>
+    (const_cast<G4UserSteppingAction*>(step_action));
+  if (!gisa) return;
+
+  PersistencyManager* pm = dynamic_cast<PersistencyManager*>
+    (G4VPersistencyManager::GetPersistencyManager());
+  if (!pm) return;
+
+  const auto& interactions = gisa->GetInteractions();
+  for (const auto& inter : interactions) {
+    G4int particle_name_id = FindStringIDInMap(str_map_, inter.particle_name, str_counter_);
+    G4int initial_volume_id = FindStringIDInMap(str_map_, inter.initial_volume, str_counter_);
+    G4int final_volume_id = FindStringIDInMap(str_map_, inter.final_volume, str_counter_);
+    G4int creator_proc_id = FindStringIDInMap(str_map_, inter.creator_proc, str_counter_);
+    G4int final_proc_id = FindStringIDInMap(str_map_, inter.final_proc, str_counter_);
+
+    pm->h5writer_->WriteGammaInteraction(save_str_, nevt_, inter.particle_id,
+                                        inter.particle_name.c_str(), particle_name_id,
+                                        inter.primary ? 1 : 0,
+                                        inter.mother_id,
+                                        (float)inter.initial_x, (float)inter.initial_y,
+                                        (float)inter.initial_z, (float)inter.initial_t,
+                                        (float)inter.final_x, (float)inter.final_y,
+                                        (float)inter.final_z, (float)inter.final_t,
+                                        inter.initial_volume.c_str(), inter.final_volume.c_str(),
+                                        initial_volume_id, final_volume_id,
+                                        (float)inter.initial_momentum_x,
+                                        (float)inter.initial_momentum_y,
+                                        (float)inter.initial_momentum_z,
+                                        (float)inter.final_momentum_x,
+                                        (float)inter.final_momentum_y,
+                                        (float)inter.final_momentum_z,
+                                        (float)inter.kin_energy,
+                                        (float)inter.length,
+                                        inter.creator_proc.c_str(),
+                                        inter.final_proc.c_str(),
+                                        creator_proc_id, final_proc_id);
+  }
+
+  gisa->Reset();
 }
 
 

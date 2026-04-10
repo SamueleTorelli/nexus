@@ -180,6 +180,27 @@ namespace materials {
     return mat;
   }
 
+  G4Material* LKr()
+  {
+    G4String name = "LKr";
+
+    G4Material* mat = G4Material::GetMaterial(name, false);
+
+    if (mat == 0) {
+      G4NistManager* nist = G4NistManager::Instance();
+
+      G4double density = 2.413 * g/cm3;
+      mat = new G4Material(name, density, 1,
+        kStateLiquid, 117.*kelvin, 1.0*bar);
+
+      G4Element* Kr = nist->FindOrBuildElement("Kr");
+
+      mat->AddElement(Kr, 1);
+    }
+
+    return mat;
+  }
+
   G4Material* GAr(G4double pressure, G4double temperature)
   {
     G4String name = "GAr";

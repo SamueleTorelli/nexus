@@ -42,6 +42,8 @@ proc_names_(),
 initial_poss_(),
 final_poss_(),
 times_(),
+pre_energies_(),
+post_energies_(),
 kill_after_selection_(false)
 {
   msg_ = new G4GenericMessenger(this, "/Actions/SaveAllSteppingAction/");
@@ -86,6 +88,8 @@ void SaveAllSteppingAction::UserSteppingAction(const G4Step* step)
   G4ThreeVector   final_pos = post->GetPosition();
   G4double        step_time = (pre->GetGlobalTime()  +
                               post->GetGlobalTime()) / 2.;
+  G4double      pre_energy = pre ->GetKineticEnergy();
+  G4double     post_energy = post->GetKineticEnergy();
 
   if (! post->GetTouchableHandle()->GetVolume()) return; // Particle exits the world
 
@@ -105,6 +109,8 @@ void SaveAllSteppingAction::UserSteppingAction(const G4Step* step)
   initial_poss_   [key].push_back(initial_pos);
     final_poss_   [key].push_back(  final_pos);
          times_   [key].push_back(  step_time);
+  pre_energies_   [key].push_back(pre_energy);
+ post_energies_   [key].push_back(post_energy);
 
   if (kill_after_selection_)
     step->GetTrack()->SetTrackStatus(fStopAndKill);
@@ -161,4 +167,6 @@ void SaveAllSteppingAction::Reset()
   initial_poss_   .clear();
     final_poss_   .clear();
          times_   .clear();
+  pre_energies_   .clear();
+ post_energies_   .clear();
 }

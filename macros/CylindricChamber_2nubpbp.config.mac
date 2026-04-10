@@ -13,8 +13,8 @@
 
 /process/em/verbose 0
 
-/Geometry/CylindricChamber/targetmaterial GXe
-/Geometry/CylindricChamber/pressure 13.5 bar
+/Geometry/CylindricChamber/targetmaterial LKr
+/Geometry/CylindricChamber/pressure 1 bar
 /Geometry/CylindricChamber/step_max 0.5 mm #in millimeters
 
 /Generator/DoublePositronPair/region ACTIVE
@@ -23,4 +23,4 @@
 
 /control/execute macros/physics/IonizationElectron.mac
 
-/nexus/persistency/output_file 2nubpbp13p5bar_50000.nexus
+/nexus/persistency/output_file 2nubpbpLKr_50000.nexus

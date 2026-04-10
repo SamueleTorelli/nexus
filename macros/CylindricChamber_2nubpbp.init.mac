@@ -18,5 +18,6 @@
 /nexus/RegisterRunAction DefaultRunAction
 /nexus/RegisterEventAction DefaultEventAction
 /nexus/RegisterTrackingAction DefaultTrackingAction
+/nexus/RegisterSteppingAction GammaInteractionSteppingAction
 
-/nexus/RegisterMacro macros/NEXT100_2nubpbp.config.mac 
+/nexus/RegisterMacro macros/CylindricChamber_2nubpbp.config.mac 

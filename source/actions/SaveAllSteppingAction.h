@@ -64,6 +64,8 @@ namespace nexus {
     StepContainer<G4ThreeVector> initial_poss_;
     StepContainer<G4ThreeVector>   final_poss_;
     StepContainer<G4double>             times_;
+    StepContainer<G4double>      pre_energies_;
+    StepContainer<G4double>     post_energies_;
 
     G4bool kill_after_selection_;
 
@@ -75,8 +77,8 @@ namespace nexus {
 
     StepContainer<G4ThreeVector> get_initial_poss();
     StepContainer<G4ThreeVector> get_final_poss();
-    StepContainer<G4double>      get_times();
-
+    StepContainer<G4double>      get_times();    StepContainer<G4double>      get_pre_energies();
+    StepContainer<G4double>      get_post_energies();
     void Reset();
 
   private:
@@ -93,6 +95,8 @@ inline StepContainer<G4String> SaveAllSteppingAction::get_proc_names     (){retu
 inline StepContainer<G4ThreeVector> SaveAllSteppingAction::get_initial_poss(){return initial_poss_;}
 inline StepContainer<G4ThreeVector> SaveAllSteppingAction::get_final_poss  (){return   final_poss_;}
 inline StepContainer<G4double>      SaveAllSteppingAction::get_times       (){return        times_;}
+inline StepContainer<G4double>      SaveAllSteppingAction::get_pre_energies(){return pre_energies_;}
+inline StepContainer<G4double>      SaveAllSteppingAction::get_post_energies(){return post_energies_;}
 
 } // namespace nexus
 

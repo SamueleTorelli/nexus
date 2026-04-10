@@ -23,7 +23,7 @@
 #include <G4PVPlacement.hh>
 #include <G4SDManager.hh>
 #include <G4UserLimits.hh>
-#include <G4Material.hh>
+//#include <G4Material.hh>
 #include <G4Element.hh>
 #include <G4NistManager.hh>
 
@@ -43,10 +43,10 @@ namespace nexus {
     e_lifetime_(1000. * ms),
     pressure_   (13.5 * bar),
     temperature_(293. * kelvin),
-    chamber_diam_   (100. * cm),
-    chamber_length_ (100. * cm),
-    chamber_thickn_ (  1. * cm),
-    step_max_(1.0 * mm)
+    chamber_diam_   (25. * cm),
+    chamber_length_ (50. * cm),
+    chamber_thickn_ (  .5 * cm),
+    step_max_(0.5 * mm)
   {
     msg_ = new G4GenericMessenger(this, "/Geometry/CylindricChamber/",
       "Control commands of geometry CylindricChamber.");
@@ -104,8 +104,12 @@ namespace nexus {
       new G4Tubs("GAS", 0., chamber_diam_/2., chamber_length_/2., 0., twopi);
 
     G4Material* a_target;
+
     if(target_ == "LXe"){
       a_target = materials::LXe();
+      a_target->SetMaterialPropertiesTable(opticalprops::LXe());
+    } else  if(target_ == "LKr"){
+      a_target = materials::LKr();
       a_target->SetMaterialPropertiesTable(opticalprops::LXe());
     } else if(target_ == "GXe"){
       a_target = materials::GXe(pressure_, temperature_);

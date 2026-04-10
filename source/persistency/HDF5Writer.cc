@@ -21,7 +21,7 @@ using namespace nexus;
 
 HDF5Writer::HDF5Writer():
   file_(0), irun_(0), ismp_(0), ihit_(0),
-  ipart_(0), ipos_(0), istep_(0), istrmap_(0)
+  ipart_(0), ipos_(0), istep_(0), istrmap_(0), igamma_(0)
 {
 }
 
@@ -54,6 +54,10 @@ void HDF5Writer::Open(std::string fileName, bool debug, bool save_str)
   std::string particle_info_table_name = "particles";
   memtypeParticleInfo_ = createParticleInfoType(save_str);
   particleInfoTable_ = createTable(group, particle_info_table_name, memtypeParticleInfo_);
+
+  std::string gamma_interaction_table_name = "gamma_interactions";
+  memtypeGammaInteraction_ = createGammaInteractionType(save_str);
+  gammaInteractionTable_ = createTable(group, gamma_interaction_table_name, memtypeGammaInteraction_);
 
   std::string sns_pos_table_name = "sns_positions";
   memtypeSnsPos_ = createSensorPosType();
@@ -239,4 +243,56 @@ void HDF5Writer::WriteStringMapInfo(const char* name, int name_id)
 
   writeStringMap(&strmap, stringMapTable_, memtypeStringMap_, istrmap_);
   istrmap_++;
+}
+
+void HDF5Writer::WriteGammaInteraction(bool str, int64_t evt_number, int particle_indx, const char* particle_name_str, int particle_name, char primary, int mother_id, float initial_vertex_x, float initial_vertex_y, float initial_vertex_z, float initial_vertex_t, float final_vertex_x, float final_vertex_y, float final_vertex_z, float final_vertex_t, const char* initial_volume_str, const char* final_volume_str, int initial_volume, int final_volume, float ini_momentum_x, float ini_momentum_y, float ini_momentum_z, float final_momentum_x, float final_momentum_y, float final_momentum_z, float kin_energy, float length, const char* creator_proc_str, const char* final_proc_str, int creator_proc, int final_proc)
+{
+  gamma_interaction_t gammaInfo;
+  gammaInfo.event_id = evt_number;
+  gammaInfo.particle_id = particle_indx;
+  if (str) {
+    memset(gammaInfo.particle_name_str, 0, STRLEN);
+    strcpy(gammaInfo.particle_name_str, particle_name_str);
+  } else {
+    gammaInfo.particle_name = particle_name;
+  }
+  gammaInfo.primary = primary;
+  gammaInfo.mother_id = mother_id;
+  gammaInfo.initial_x = initial_vertex_x;
+  gammaInfo.initial_y = initial_vertex_y;
+  gammaInfo.initial_z = initial_vertex_z;
+  gammaInfo.initial_t = initial_vertex_t;
+  gammaInfo.final_x = final_vertex_x;
+  gammaInfo.final_y = final_vertex_y;
+  gammaInfo.final_z = final_vertex_z;
+  gammaInfo.final_t = final_vertex_t;
+  if (str) {
+    memset(gammaInfo.initial_volume_str, 0, STRLEN);
+    strcpy(gammaInfo.initial_volume_str, initial_volume_str);
+    memset(gammaInfo.final_volume_str, 0, STRLEN);
+    strcpy(gammaInfo.final_volume_str, final_volume_str);
+  } else {
+    gammaInfo.initial_volume = initial_volume;
+    gammaInfo.final_volume = final_volume;
+  }
+  gammaInfo.initial_momentum_x = ini_momentum_x;
+  gammaInfo.initial_momentum_y = ini_momentum_y;
+  gammaInfo.initial_momentum_z = ini_momentum_z;
+  gammaInfo.final_momentum_x = final_momentum_x;
+  gammaInfo.final_momentum_y = final_momentum_y;
+  gammaInfo.final_momentum_z = final_momentum_z;
+  gammaInfo.kin_energy = kin_energy;
+  gammaInfo.length = length;
+  if (str) {
+    memset(gammaInfo.creator_proc_str, 0, STRLEN);
+    strcpy(gammaInfo.creator_proc_str, creator_proc_str);
+    memset(gammaInfo.final_proc_str, 0, STRLEN);
+    strcpy(gammaInfo.final_proc_str, final_proc_str);
+  } else {
+    gammaInfo.creator_proc = creator_proc;
+    gammaInfo.final_proc = final_proc;
+  }
+
+  writeGammaInteraction(&gammaInfo, gammaInteractionTable_, memtypeGammaInteraction_, igamma_);
+  igamma_++;
 }

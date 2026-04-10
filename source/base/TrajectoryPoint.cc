@@ -16,14 +16,14 @@ G4Allocator<TrajectoryPoint> TrjPointAllocator;
 
 
 TrajectoryPoint::TrajectoryPoint(): 
-  position_(0.,0.,0.), time_(0.)
+  position_(0.,0.,0.), time_(0.), energy_(0.)
 {
 }
 
 
 
-TrajectoryPoint::TrajectoryPoint(G4ThreeVector pos, G4double t):
-  position_(pos), time_(t)
+TrajectoryPoint::TrajectoryPoint(G4ThreeVector pos, G4double t, G4double e):
+  position_(pos), time_(t), energy_(e)
 {
 }
 
@@ -40,6 +40,7 @@ const TrajectoryPoint& TrajectoryPoint::operator=(const TrajectoryPoint& other)
 {
   position_ = other.position_;
   time_     = other.time_;
+  energy_   = other.energy_;
 
   return *this;
 }
@@ -48,6 +49,13 @@ const TrajectoryPoint& TrajectoryPoint::operator=(const TrajectoryPoint& other)
 
 TrajectoryPoint::~TrajectoryPoint()
 {
+}
+
+
+
+G4double TrajectoryPoint::GetKineticEnergy() const
+{
+  return energy_;
 }
 
 

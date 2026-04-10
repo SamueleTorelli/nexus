@@ -73,6 +73,8 @@
         int final_proc;
   } particle_info_t;
 
+  typedef particle_info_t gamma_interaction_t;
+
   typedef struct{
     unsigned int sensor_id;
     char sensor_name[STRLEN];
@@ -110,6 +112,7 @@ typedef struct{
   hsize_t createSensorPosType();
   hsize_t createStepType();
   hsize_t createStringMapType();
+  hsize_t createGammaInteractionType(bool str);
 
   hid_t createTable(hid_t group, std::string& table_name, hsize_t memtype);
   hid_t createGroup(hid_t file, std::string& groupName);
@@ -121,6 +124,7 @@ typedef struct{
   void writeSnsPos(sns_pos_t* snsPos, hid_t dataset, hid_t memtype, hsize_t counter);
   void writeStep(step_info_t* step, hid_t dataset, hid_t memtype, hsize_t counter);
   void writeStringMap(string_map_t* strmap, hid_t dataset, hid_t memtype, hsize_t counter);
+  void writeGammaInteraction(gamma_interaction_t* gammaInfo, hid_t dataset, hid_t memtype, hsize_t counter);
 
 
 #endif

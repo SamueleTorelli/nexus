@@ -169,6 +169,11 @@ hsize_t createStringMapType()
   return memtype;
 }
 
+hsize_t createGammaInteractionType(bool str)
+{
+  return createParticleInfoType(str);
+}
+
 hid_t createTable(hid_t group, std::string& table_name, hsize_t memtype)
 {
   //Create 1D dataspace (evt number). First dimension is unlimited (initially 0)
@@ -346,4 +351,9 @@ void writeStringMap(string_map_t* strmap, hid_t dataset, hid_t memtype, hsize_t 
   H5Dwrite(dataset, memtype, memspace, file_space, H5P_DEFAULT, strmap);
   H5Sclose(file_space);
   H5Sclose(memspace);
+}
+
+void writeGammaInteraction(gamma_interaction_t* gammaInfo, hid_t dataset, hid_t memtype, hsize_t counter)
+{
+  writeParticle((particle_info_t*)gammaInfo, dataset, memtype, counter);
 }

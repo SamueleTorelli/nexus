@@ -45,7 +45,8 @@ Trajectory::Trajectory(const G4Track* track):
   trjpoints_ = new TrajectoryPointContainer();
   TrajectoryPoint* first_trj_point = 
                 new TrajectoryPoint(track->GetPosition(), 
-                                    track->GetGlobalTime());
+                                    track->GetGlobalTime(),
+                                    track->GetKineticEnergy());
   trjpoints_->push_back(first_trj_point);
 
   // Add this trajectory in the map, but only if no other
@@ -100,7 +101,8 @@ void Trajectory::AppendStep(const G4Step* step)
 
   TrajectoryPoint* point =
     new TrajectoryPoint(step->GetPostStepPoint()->GetPosition(),
-                        step->GetPostStepPoint()->GetGlobalTime());
+                        step->GetPostStepPoint()->GetGlobalTime(),
+                        step->GetPostStepPoint()->GetKineticEnergy());
   trjpoints_->push_back(point);
 }
 

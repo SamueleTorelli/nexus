@@ -23,8 +23,8 @@ namespace nexus {
   public:
     /// Default constructor
     TrajectoryPoint();
-    /// Constructor giving a position and time
-    TrajectoryPoint(G4ThreeVector, G4double);
+    /// Constructor giving a position, time, and kinetic energy
+    TrajectoryPoint(G4ThreeVector, G4double, G4double);
     /// Copy constructor
     TrajectoryPoint(const TrajectoryPoint&);
     /// Destructor
@@ -43,10 +43,13 @@ namespace nexus {
     const G4ThreeVector GetPosition() const;
     /// Return the (global) time of the point
     G4double GetTime() const;
+    /// Return the kinetic energy at the point
+    G4double GetKineticEnergy() const;
 
   private:
     G4ThreeVector position_;
     G4double time_;
+    G4double energy_;
 };
 
 } // namespace nexus

@@ -46,6 +46,9 @@ namespace materials {
   // Liquid xenon
   G4Material* LXe();
 
+  // Compatibility alias (some code uses LKr instead of myLKr)
+  G4Material* LKr();
+
   // Argon
   G4Material* GAr(G4double pressure=STP_Pressure,
 			            G4double temperature=STP_Temperature);

@@ -62,6 +62,7 @@ namespace nexus {
 
   private:
     void StoreTrajectories(G4TrajectoryContainer*);
+    void StoreGammaInteractions();
     void StoreHits(G4HCofThisEvent*);
     void StoreIonizationHits(G4VHitsCollection*);
     void StoreSensorHits(G4VHitsCollection*);
