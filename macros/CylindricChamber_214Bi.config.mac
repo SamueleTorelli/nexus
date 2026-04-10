@@ -16,9 +16,9 @@
 
 #/Geometry/CylindricChamber/targetmaterial LXe
 
-/Geometry/CylindricChamber/targetmaterial GXe
-/Geometry/CylindricChamber/pressure 15 bar
-/Geometry/CylindricChamber/step_max 0.2 mm #in millimeters
+/Geometry/CylindricChamber/targetmaterial LKr
+/Geometry/CylindricChamber/pressure 1 bar
+/Geometry/CylindricChamber/step_max 1 mm #in millimeters
 
 #/Generator/SingleParticle/particle gamma
 #/Generator/SingleParticle/min_energy 2.457 MeV

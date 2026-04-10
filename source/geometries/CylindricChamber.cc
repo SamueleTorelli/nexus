@@ -45,8 +45,8 @@ namespace nexus {
     temperature_(293. * kelvin),
     chamber_diam_   (25. * cm),
     chamber_length_ (50. * cm),
-    chamber_thickn_ (  .5 * cm),
-    step_max_(0.5 * mm)
+    chamber_thickn_ (  3.0 * cm),
+    step_max_(1.0 * mm)
   {
     msg_ = new G4GenericMessenger(this, "/Geometry/CylindricChamber/",
       "Control commands of geometry CylindricChamber.");

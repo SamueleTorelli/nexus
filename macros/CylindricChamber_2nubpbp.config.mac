@@ -13,9 +13,12 @@
 
 /process/em/verbose 0
 
+/nexus/random_seed -1
+
+
 /Geometry/CylindricChamber/targetmaterial LKr
 /Geometry/CylindricChamber/pressure 1 bar
-/Geometry/CylindricChamber/step_max 0.5 mm #in millimeters
+/Geometry/CylindricChamber/step_max 1 mm #in millimeters
 
 /Generator/DoublePositronPair/region ACTIVE
 
@@ -23,4 +26,5 @@
 
 /control/execute macros/physics/IonizationElectron.mac
 
-/nexus/persistency/output_file 2nubpbpLKr_50000.nexus
+/nexus/persistency/safename true
+/nexus/persistency/output_file output/2nubpbpLKr_50000.nexus
