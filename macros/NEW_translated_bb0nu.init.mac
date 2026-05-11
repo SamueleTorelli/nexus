@@ -1,0 +1,28 @@
+## ----------------------------------------------------------------------------
+## nexus | NEW_translated_bb0nu.init.mac
+##
+## Initialization macro to simulate bb0nu decays in the NEW detector geometry.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/control/execute macros/physics/DefaultPhysicsList.mac
+
+/nexus/RegisterGeometry NextNew
+
+/nexus/RegisterGenerator Decay0Interface
+
+/nexus/RegisterPersistencyManager PersistencyManager
+
+/nexus/RegisterTrackingAction DefaultTrackingAction
+/nexus/RegisterEventAction DefaultEventAction
+/nexus/RegisterRunAction DefaultRunAction
+
+/nexus/RegisterMacro macros/NEW_translated_bb0nu.config.mac
+
+
+
+
+
+
+

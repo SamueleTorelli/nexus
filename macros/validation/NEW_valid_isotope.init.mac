@@ -1,0 +1,29 @@
+## ----------------------------------------------------------------------------
+## nexus | NEW_valid_isotope.init.mac
+##
+## Initialization macro to simulate K-40, Co-60, Bi214 and Tl-208
+## decays to test gamma production in different versions of GEANT4.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+
+### PHYSICS
+/PhysicsList/RegisterPhysics G4EmStandardPhysics_option4
+/PhysicsList/RegisterPhysics G4DecayPhysics
+/PhysicsList/RegisterPhysics G4RadioactiveDecayPhysics
+/PhysicsList/RegisterPhysics NexusPhysics
+/PhysicsList/RegisterPhysics G4StepLimiterPhysics
+
+/nexus/RegisterGeometry NextNew
+
+/nexus/RegisterGenerator IonGenerator
+
+/nexus/RegisterPersistencyManager PersistencyManager
+
+/nexus/RegisterTrackingAction ValidationTrackingAction
+/nexus/RegisterEventAction DefaultEventAction
+
+/nexus/RegisterMacro macros/validation/NEW_valid_isotope.config.mac
+
+#/nexus/RegisterDelayedMacro macros/physics/Bi214.mac

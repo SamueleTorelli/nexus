@@ -1,0 +1,29 @@
+## ----------------------------------------------------------------------------
+## nexus | NEXT100_S1_table.config.mac
+##
+## Configuration macro to simulate primary scintillation light
+## for look-up tables in the NEXT-100 detector.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+# VERBOSITY
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+
+# JOB CONTROL
+/nexus/random_seed -2
+
+# GEOMETRY
+/Geometry/Next100/pressure 15. bar
+
+# GENERATION
+/Generator/ScintGenerator/region ACTIVE
+/Generator/ScintGenerator/nphotons 100000
+
+# PHYSICS
+/control/execute macros/physics/IonizationElectron.mac
+/nexus/persistency/output_file S1_param.next

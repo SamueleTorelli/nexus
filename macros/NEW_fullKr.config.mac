@@ -1,0 +1,33 @@
+## ----------------------------------------------------------------------------
+## nexus | NEW_fullKr.config.mac
+##
+## Configuration macro to simulate Kr-83 decays in the NEW geometry
+## with generation and transportation of optical photons.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+# VERBOSITY
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+
+# GEOMETRY
+/Geometry/NextNew/pressure 7. bar
+/Geometry/NextNew/sc_yield 25510. 1/MeV
+/Geometry/NextNew/e_lifetime 1000. ms
+/Geometry/NextNew/EL_field 10 kV/cm
+/Geometry/NextNew/elfield true
+/Geometry/PmtR11410/time_binning 100. nanosecond
+/Geometry/KDB/sipm_time_binning 1. microsecond
+
+/PhysicsList/Nexus/photoelectric false
+/process/optical/processActivation Cerenkov false
+
+# GENERATOR
+/Generator/Kr83mGenerator/region ACTIVE
+
+# PERSISTENCY
+/nexus/persistency/output_file Kr83_full_nexus_ACTIVE_7bar.sim

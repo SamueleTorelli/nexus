@@ -1,0 +1,386 @@
+tag v7_05_00 - 26 Apr 2022
+	- Add features to the actions that saves all steps
+	- Fix electroluminescence generation to work properly with Geant4.11.1
+
+tag v7_04_00 - 15 Mar 2022
+	- Fix bug in TPB optical properties
+	- Add double electron capture generator
+	- Add polished Al material
+	- Create functions for random sampling from arbitrary distribution
+	- Modify validation tracking action to use different file format than .root
+        - Adapt code to Geant4.11.1
+
+tag v7_03_01 - 21 Feb 2022
+	- Add a new class for the LSC shielding to be used with NEW
+	- Fix bug in materials.
+
+tag v7_03_00 - 10 Nov 2022
+	- Remove SaveAllEventAction class
+	- Fix muon generator to simulate muons only from above the LSC floor
+	- Change event ID type in output files to avoid overflow later
+	- Add new geometry and generator to simulate the black box studies
+	- Add new materials for fibers
+	- Fix bug in hit numbering for tracks crossing two sensitive detectors
+
+tag v7_02_00 - 3 May 2022
+	- Remove ROOT dependency from the code
+	- Add energy input to MuonAngleGenerator
+	- Fix minor bugs in visualization and optical properties
+	- Generate nexus library with CMake
+	- Review SConstruct building script
+
+tag v7_01_00 - 18 feb 2022
+	- Fix grid transparency to current value.
+	- Use 293 K as the temperature for NEXT-100.
+	- Add vertex generator for HDPE tube in NEXT-100.
+
+tag v7_00_00 - 3 feb 2022
+	- Adapt nexus to GEANT4-v11. These changes are backward-incompatible.
+	- Review the tracking plane geometry of NEXT-100.
+	- Fix details of the field cage geometry of NEXT-100.
+
+tag v6_03_00 - 11 Jan 2022
+	- Full revision of NEXT100 geometry.
+	- Add new configurations of the DEMO geometry.
+	- Use general factory to create geometries, generators and actions.
+	- Change materials and optical properties to functions.
+	- Create nexus library in compilation to be used from a different software.
+
+tag v6_02_01 - 25 Mar 2021
+	- Fix IDs of DEMO++ PMTs.
+
+tag v6_02_00 - 17 Feb 2021
+	- Add a new generator in the EL gap for light table production.
+	- Fix the composition of ITO to the best of our knowledge.
+	- Fix the position of the holes in the ICS of NEW.
+	- Add nix to nexus.
+	- Add the possibility of generating a single particle in a limited range of directions.
+	- Add the LSC rock geometry.
+	- Add photoelectric process.
+	- Simulate DEMO++ geometry.
+	- Fix GenericPhotosensor geometry to prevent photons from entering through the sides of the active area.
+
+tag v6_01_01 - 6 Oct 2020
+	- Fix a bug in the position of SiPMs in the NEXT100 boards.
+
+tag v6_01_00 - 8 Sept 2020
+	- Add NextFlex, a new flexible geometry which configurable sensors and dimensions,
+	meant to be used to study designs of future detectors.
+	- Change the implementation of the PmtSD class, in what concerns
+	the volume that triggers the detection.
+	- Add a stepping action that saves all the steps of certain particles
+	going through certain volumes.
+	- Remove the creation of .history files.
+	- Change the code according to nexus conventions.
+        - Add automatic tests for all the example macros.
+
+tag v6_00_00 - 22 May 2020
+	- Rewrite the inner elements of the NEXT100 geometry, following the current design.
+	- Fix the placement of the NEW tracking plane.
+	- Review of the optical properties of the materials.
+	- Use the G4 wavelength shifting process, instead of the nexus one.
+	- Add optical surfaces to the separation surfaces of dielectrics.
+	- Add a teflon mask volume to the NEW dice boards.
+	- Add a tracking action that saves optical photon information.
+	- Write new samplers for vertex generators, to be used from NEXT100 on.
+	- Remove neutron generator and reorganize the current muon generators.
+	- Remove NextNewOpticalGeometry class from geometries.
+	- Simplify of the h5 structure of the output files.
+	- Eliminate GATE dependency from the code.
+	- Add a test suite.
+
+tag v5_07_00 - 13 Dec 2019
+	- Fix several bugs in the vertex generators of both NEW and NEXT-100.
+	- Add emission spectrum for scintillation generator.
+	- Add helium-xenon mixture gas option.
+
+tag v5_06_00 - 14 Sept 2019
+	- Fix in tonne geometry implementing the central cathode as a thin SSteel foil.
+	- Fix radius sampler in SpherePointSampler
+
+tag v5_05_00 - 12 Sept 2019
+	- Added a simplified version of Next-Tonne detector geometry.
+
+tag v5_04_00 - 22 Jul 2019
+    	- First version to be used with geant4.10.5. It won't work with previous versions of g4.
+	- Add vertex generator in BUFFER region.
+	- Add muon generators.
+	- Add possibility of building using CMake.
+	- Fixes bug in the counter of interacting events.
+
+tag v5_03_12 - 27 Feb 2019
+        - Add new geometry for tonne studies.
+
+tag v5_03_11 - 28 Jan 2019
+        - Fix bug in vertex generation for specific configurations.
+
+tag v5_03_10 - 31 Oct 2018
+        - Add steel support structure to mini lead castle.
+
+tag v5_03_09 - 25 Oct 2018
+        - Add mini lead castle to the NEW geometry.
+
+tag v5_03_08 - 11 Oct 2018
+        - Reserve more space for configuration parameters in hdf5 file.
+
+tag v5_03_07 - 11 Jul 2018
+        - Bug fixed for the generation of the ICS volume.
+	- Position of dice board connectors (DB_PLUG volume) moved far
+	away from the copper.
+
+tag v5_03_06 - 5 July 2018
+	- Fix bug for generation in the HDPE_TUBE volume.
+
+tag v5_03_05 - 26 June 2018
+	- New volume added between the tracking plane endcap and the
+	shielding, to account for radioactive materials in the spaceship.
+
+tag v5_03_04 - 12 June 2018
+	- Saving hdf5 or GATE files become alternative.
+
+tag v5_03_03 - 16 May 2018
+	- Add vertex generators on PMT surface and internal enclosure surface.
+
+tag v5_03_02 - 23 Apr 2018
+	- Fix types to be able to store larger numbers.
+
+tag v5_03_01 - 7 Mar 2018
+    	- Time binning parameter name changed to be read in IC.
+	- Bugs in dimensional parameters fixed.
+	- Raise a fatal exception when a configuration parameter is not
+	interpreted correctly.
+
+tag v5_03_00 - 28 Feb 2018
+    	- hdf5 writing capability added.
+	- Building code adapted to use scons-3.x.x, which uses python3.
+	- /nexus/historyFile parameter eliminated.
+	- .gitignore file added.
+	- Possibility of customize SiPM time binning added.
+
+tag v5_02_10 - 27 Nov 2017
+	- transparency of the GATE mesh changed from 76% to 84%, according
+	to the actual measurements of the diameter of the wires.
+
+tag v5_02_09 - 8 Aug 2017
+	- bug in initialization of start ID fixed.
+	- Generator of e+e- pair with customizable total kinetic energy added.
+
+tag v5_02_08 - 30 Jul 2017
+	- Position of Th source on to the vessel and generator implemented
+
+tag v5_02_07 - 12 Jul 2017
+	- Inner and outer radii of the copper shielding changed according
+	to real design (overlaps of volumes detected).
+	- Central upper port simulated in detail, following lateral and
+	axial ones.
+	- DEMO disk-shape calibration source geometry added
+	- Calibration source macros reorganized
+
+tag v5_02_06 - 4 Jul 2017
+	- S1 scintillation yield default value changed.
+
+tag v5_02_05 - 30 Jun 2017
+	- customizable starting event ID for each job added.
+
+tag v5_02_04 - 17 May 2017
+	- bug fixed in the placement of the lead collimator in the axial
+	port
+	- Redefinition of parameter for type of gas in the NEXT100 geometry to make
+	it equal to the NEW geometry
+	- update of the example macro of a source in the internal axial
+	port
+	- Change of inner z size of lead castle, following recent
+	measurements at LSC
+
+tag v5_02_03 - 3 May 2017
+	- name clash of two different configuration parameters solved
+
+tag v5_02_02 - 29 Apr 2017
+	- the position of a calibration source in axial port feedthrough is now configurable
+
+tag v5_02_01 - 27 Apr 2017
+	- same as tag v5_02_00, small bug fixed in the dimensions of a piece of lead collimator
+
+tag v5_02_00 - 26 Apr 2017
+	- Buffer tube eliminated and reflectivity of hdpe set to 50%.
+	- Lead collimator and shielding and external scintillator
+	encapsulated as classes.
+	- Possibility of placing all the calibration system (lead
+	collimator, scintillator and source) in the lateral or axial port
+	via configuration parameters.
+	- Example of configuration files for calibration events added.
+
+tag v5_01_17 - 4 Apr 2017
+	- Time binning of PMTs passed as a configuration parameter.
+	- Fixed bug in the drift length calculation in the EL gap.
+	- Ratio mu+/mu- added in muon generator.
+	- Size of EL gap changed to 6 mm, according to the new configuration of the quartz plate
+	- Bug fixed in the simulation of the NEW axial port
+	- Na22 generator changed to include a probability of ~10% of not having beta+ decay.
+	- First version of Jordi lead shielding + Freddy shielding added to the lateral port.
+
+tag v5_01_16 - 20 Feb 2017
+	- Fast and slow components of scintillation in GXe changed to most
+	recent values
+	- Composition of depleted Xe changed to second bottle at LSC
+	(currently in use)
+	- Muon generator completed
+tag v5_01_15 -2 Jan 2017
+	- Header file missing
+tag v5_01_14 -2 Jan 2017
+	- Bug fixed in the generation of vertices of the DB_PLUG region.
+	- CENTER region in NEW is now the center of the active volume
+	- In NEW the calibration source is not placed by default
+	- Axial port tube for calibration sources simulated, together with
+	the air inside it.
+
+tag v5_01_13 - 29 Dec 2016
+	- Bug fixed in the generation of those vertices where the volume check was made with the vertex in
+	the local reference system  and not in the global one.
+
+tag v5_01_12 - 16 Dec 2016
+	- Lead block added as a configurable parameter to shield the
+	lateral port.
+	- Position of internal source configurable via parameter.
+	- Full revision of lateral port done, correcting small details.
+	- Fix in the AD_HOC region: the vertex must be in the drift length
+	reference system
+
+tag v5_01_11 - 23 Nov 2016
+	- NaI scintillator added to the NEW geometry as a sensitive
+	detector
+	- First event ID of a job can be passed as a configuration
+	parameter
+	- Muon generator surface added to NEW and NEXT100
+	- Neutron generator with fixed energy added.
+
+tag v5_01_10 - 28 Oct 2016
+	- Pressure of 7 bar added to list
+
+tag v5_01_09 - 12 Oct 2016
+	- Possibility of using Na or Th source via configuration parameter
+
+tag v5_01_08 - 05 Oct 2016
+	- Na22 internal source implemented according to drawings
+
+tag v5_01_07 - 21 Sep 2016
+	- Dependency on hdf5 added
+	- Fixed problem in full simulation, following latest change of coordinates
+
+tag v5_01_06 - 13 Sep 2016
+	- Fix to previous tag
+
+tag v5_01_05 - 13 Sep 2016
+	- Mixture Ar+Xe added as a material and code modified to use it properly
+
+tag v5_01_04 - 6 Sep 2016
+	- Change in reference system applied to NEW and NEXT-100, which implies a rotation of Pi around Y axis and z displacement. This implies that all x positions change to -x
+	- Mixture Ar+Xe added as a material + optical properties of gaseous Ar updated
+
+tag v5_01_03 - 2 Aug 2016
+	- All ports in NEW simulated, along with their correspondent vertices
+	- Two Na22 sources placed in the NEW geometry, one in the lateral and the other one in the upper port
+	- Ar gas properties added
+	- Possibility of using Ar gas added to NEW geometry
+	- Cs137.mac macro added to stop Xe137 decay chain
+
+tag v5_01_02 - 24 Jun 2016
+	- Bug corrected in the placement of pedestal volume
+	- Lab vertex generator added to the NEXT-100 geometry
+
+tag v5_01_01
+	- TPB eliminated from KDB
+	- Enriched and depleted xenon added as new materials
+	- new tracking action for geant4 version validation added
+
+tag v5_01_00
+	- First tag to be used with Geant4.10.02
+	- Change in the way of linking to gsl
+
+tag v5_00_13
+	- two new vertices added to NEXT100 geometries.
+
+tag v5_00_12
+	- Change in z coordinate for those geometries that have a drift field.
+	- Number of simulated events actually written to file saved as a
+	property of the run
+
+tag v5_00_11
+	- Decay0 class added to generate double beta decay events
+	- Teflon masks added in fron of dice boards for the NEW geometry
+
+tag v5_00_10
+	- Possibility of changing the z coordinate in the generation of EL table added for studies at different diffusions
+
+tag v5_00_09
+	- Macros for S1 generation in NEXT-100 added
+	- Wavelength shifting decay times changed to be sampled by an exponential
+
+tag v5_00_08 - 15 feb 2016
+	- Code for S1 parametrization + example macro files added
+
+tag v5_00_07 - 15 feb 2016
+	- Bug fixed in generation of photons along the drift in the EL region
+
+tag v5_00_06 - 12 Feb 2016
+	- Vertex generator added to quartz plate
+	- New stepping action added as an example to track optical photons
+	- Label added to true hits to indicate the sensitive detector they belong to (ACTIVE, BUFFER...)
+
+tag v5_00_05 - 8 Feb 2016
+	- Changes in the PersistencyManager class to avoid wrong truncation and overflow.
+	- More updates of the NEXT-100 geometry.
+
+tag v5_00_02 - 26 Jan 2016
+	- Some minor changes in the NEW geometry, according to the latest drawings and
+	  current status. In particular the lateral (anode) and upper source collimators have
+	  been simulated.
+	- Possibility of a cut on the maximum energy of the event added
+	- Macros for full simulation added
+	- Modifications of the NEXT-100 geometry, sticking as much as possible to
+	  the current design of NEW.
+	- Nozzle holes in shielding eliminated + one nozzle in the NEXT-100 cut in order to fit.
+
+tag v5_00_00 - 28 Oct 2015
+	- Change from IRENE to GATE in persistency.
+	- 83Kr generator added.
+	- Xenon density used in the refractive index calculation taken  from pressure.
+	- Event writing skipped if one event is aborted, in order not to have the whole run crashed.
+	- Obsolete GenbbInterface class  eliminated. Decay0 to be used instead.
+
+tag v4_04_05 - 19 Jun 2015
+	- transverse and longitudinal diffusion and electric field strength passed by configuration parameters
+	- Muon generator added
+	- Definition of colors in one place, to be used by all the geometry classes.
+	- NEW SiPM simulated with the specifications of the Sensl ones. New class (SiPMSensl added)
+	- Change in the KDB volume, that is now bigger than reality, in order not to have volume overlapping with the SiPMs. The vertex generator is simulated only inside the true volume.
+	- macro added that shows how to stop a decay chain at any point
+	- Vertex generator added for the quartz plate.
+tag v4_04_04 - 5 May 2015
+	- More values of pressure added to calculate density of gaseous xenon in MaterialsList
+
+tag v4_04_03 - 4 Apr 2015
+	- EL table generation scheme changed to generation of the whole statistics
+	for a given range of points, for NEW and NEXT-100 geometry.
+
+tag 4.04.00 - 9 Feb 2015
+	- Version of nexus that depends on Geant4-10. It is backward-incompatible,
+	meaning that cannot be used with previous versions of Geant4.
+	The last tag with Geant4-9.6 is 4.03.10
+	- Change in the electromagnetic physics list: from
+ 	G4EmLivermorePhysics to G4EmStandardPhysics_option4
+
+tag 4.03.10 - 23 Jan 2015
+	- Addition to the NEW geometry: steel beam structure in the lead
+	castle, PMT bases, piggy tale connectors
+	- Reorganization of the Event Actions
+	- Scintillation yield parameter added to the NEW geometries
+	- Specific vertex generation option added to the NEW geometry
+
+tag 4.03.08 - 18 Sept 2014
+	- Major modifications to the NEW geometry, according to the latest drawings.
+	- A few new parameters added for the EL process.
+	- Bug fixed in the storage of metadata.
+
+tag 4.03.03 - 5 Mar 2014
+	-Next1EL.cc: back to using the most recent simulation of TPB wavelength shifting.

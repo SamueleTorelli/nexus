@@ -1,0 +1,26 @@
+## ----------------------------------------------------------------------------
+## nexus | NEW_S2_table.init.mac
+##
+## Initialization macro to simulate secondary scintillation light
+## for look-up tables in the NEW detector.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/PhysicsList/RegisterPhysics G4EmStandardPhysics_option4
+/PhysicsList/RegisterPhysics G4DecayPhysics
+/PhysicsList/RegisterPhysics G4OpticalPhysics
+/PhysicsList/RegisterPhysics NexusPhysics
+
+/nexus/RegisterGeometry NextNew
+
+/nexus/RegisterGenerator ELTableGenerator
+
+/nexus/RegisterPersistencyManager PersistencyManager
+
+/nexus/RegisterTrackingAction DefaultTrackingAction
+/nexus/RegisterRunAction DefaultRunAction
+
+/nexus/RegisterMacro macros/NEW_S2_table.config.mac
+
+/nexus/RegisterDelayedMacro macros/physics/EL_tables.mac

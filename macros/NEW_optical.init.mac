@@ -1,0 +1,20 @@
+### --------------------------------------------------------
+###  Initialization macro for the NEW detector geometry.
+###  This macro simulates individual particles
+###  in the active volume. It simulates only the inner
+###  part of the detector.
+### --------------------------------------------------------
+
+/control/execute macros/physics/DefaultPhysicsList.mac
+
+/nexus/RegisterGeometry NextNew
+
+/nexus/RegisterGenerator SingleParticleGenerator
+
+/nexus/RegisterPersistencyManager PersistencyManager
+
+/nexus/RegisterTrackingAction DefaultTrackingAction
+/nexus/RegisterEventAction DefaultEventAction
+/nexus/RegisterRunAction DefaultRunAction
+
+/nexus/RegisterMacro macros/NEW_optical.config.mac

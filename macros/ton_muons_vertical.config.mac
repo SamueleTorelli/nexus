@@ -1,0 +1,55 @@
+## ----------------------------------------------------------------------------
+## nexus | ton_muons_vertical.config.mac
+##
+## Configuration macro to simulate vertical muons in a tonne-scale detector.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+### VERBOSITY
+/control/verbose 0
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+#/process/had/verbose 0
+
+### JOB CONTROL
+/nexus/random_seed 17392
+
+### GEOMETRY
+/Geometry/NextTonScale/active_diam    200. cm
+/Geometry/NextTonScale/active_length  200. cm
+/Geometry/NextTonScale/fcage_thickn   1. cm
+/Geometry/NextTonScale/ics_thickn     12. cm
+/Geometry/NextTonScale/vessel_thickn  2. cm
+/Geometry/NextTonScale/gas_pressure   15 bar
+/Geometry/NextTonScale/gas            enrichedXe
+
+### GENERATOR
+/Generator/MuonGenerator/region MUONS
+/Generator/MuonGenerator/min_energy 200 GeV
+/Generator/MuonGenerator/max_energy 250 GeV
+
+# Use angular distribution simulated/measured at LSC
+/Generator/MuonGenerator/use_lsc_dist false
+
+# User specified muon direction. Must set use_lsc_dist to false for this to work
+/Generator/MuonGenerator/user_dir 0 -1 0
+
+# For coordinate system transformation, do not edit
+/Generator/MuonGenerator/azimuth_rotation 150 deg
+
+### ACTIONS
+/Actions/DefaultEventAction/min_energy 0.01 MeV
+#/Actions/MuonsEventAction/stringHist MuonsDistribution.csv
+
+### PHYSICS (for fast simulation)
+/PhysicsList/Nexus/clustering           false
+/PhysicsList/Nexus/drift                false
+/PhysicsList/Nexus/electroluminescence  false
+
+### PERSISTENCY
+/nexus/persistency/start_id 0
+/nexus/persistency/output_file TonMuons_vertical_example.next

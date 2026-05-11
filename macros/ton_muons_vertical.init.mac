@@ -1,0 +1,41 @@
+## ----------------------------------------------------------------------------
+## nexus | ton_muons_vertical.init.mac
+##
+## Initialization macro to simulate vertical muons, in a tonne-scale detector.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+### PHYSICS
+/PhysicsList/RegisterPhysics G4EmStandardPhysics_option4
+/PhysicsList/RegisterPhysics G4EmExtraPhysics
+/PhysicsList/RegisterPhysics G4DecayPhysics
+/PhysicsList/RegisterPhysics G4RadioactiveDecayPhysics
+/PhysicsList/RegisterPhysics G4HadronElasticPhysicsHP
+/PhysicsList/RegisterPhysics G4HadronPhysicsQGSP_BERT_HP
+/PhysicsList/RegisterPhysics G4StoppingPhysics
+/PhysicsList/RegisterPhysics G4IonPhysics
+/PhysicsList/RegisterPhysics NexusPhysics
+/PhysicsList/RegisterPhysics G4StepLimiterPhysics
+
+/physics_lists/em/MuonNuclear true
+
+### GEOMETRY
+/nexus/RegisterGeometry NextTonScale
+
+### GENERATOR
+/nexus/RegisterGenerator MuonGenerator
+
+### PERSISTENCY MANAGER
+/nexus/RegisterPersistencyManager PersistencyManager
+
+### ACTIONS
+/nexus/RegisterTrackingAction DefaultTrackingAction
+/nexus/RegisterRunAction DefaultRunAction
+
+# Use muon event action for debugging
+/nexus/RegisterEventAction DefaultEventAction
+# /nexus/RegisterEventAction MuonsEventAction
+
+/nexus/RegisterDelayedMacro macros/physics/Xe137.mac
+/nexus/RegisterMacro macros/ton_muons_vertical.config.mac

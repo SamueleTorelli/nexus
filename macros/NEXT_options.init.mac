@@ -1,0 +1,52 @@
+## ----------------------------------------------------------------------------
+## nexus | NEXT_options.init.mac
+##
+## Initialization macro that shows the most relevant options that can be used.
+## For each parameter all the options are commented, except for one, if needed.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+##### PHYSICS #####
+/PhysicsList/RegisterPhysics G4EmStandardPhysics_option4
+/PhysicsList/RegisterPhysics G4DecayPhysics
+/PhysicsList/RegisterPhysics G4RadioactiveDecayPhysics
+#/PhysicsList/RegisterPhysics G4OpticalPhysics
+#/PhysicsList/RegisterPhysics G4HadronElasticPhysicsHP
+#/PhysicsList/RegisterPhysics G4HadronPhysicsQGSP_BERT_HP
+#/PhysicsList/RegisterPhysics G4StoppingPhysics
+#/PhysicsList/RegisterPhysics G4IonPhysics
+/PhysicsList/RegisterPhysics NexusPhysics
+/PhysicsList/RegisterPhysics G4StepLimiterPhysics
+
+##### GEOMETRY #####
+/nexus/RegisterGeometry Next100
+#/nexus/RegisterGeometry NextNew
+#/nexus/RegisterGeometry Next100OpticalGeometry
+
+##### GENERATOR #####
+/nexus/RegisterGenerator IonGenerator
+#/nexus/RegisterGenerator SingleParticleGenerator
+#/nexus/RegisterGenerator Decay0Interface
+#/nexus/RegisterGenerator Kr83mGenerator
+#/nexus/RegisterGenerator ScintillationGenerator
+#/nexus/RegisterGenerator MuonGenerator
+
+### PERSISTENCY MANAGER
+/nexus/RegisterPersistencyManager PersistencyManager
+
+##### ACTIONS #####
+/nexus/RegisterRunAction DefaultRunAction
+
+/nexus/RegisterEventAction DefaultEventAction
+
+#/nexus/RegisterSteppingAction AnalysisSteppingAction
+
+/nexus/RegisterTrackingAction DefaultTrackingAction
+#/nexus/RegisterTrackingAction OpticalTrackingAction
+
+##### CONFIGURATION MACRO #####
+/nexus/RegisterMacro macros/NEXT_options.config.mac
+
+##### DELAYED MACROS #####
+#/nexus/RegisterDelayedMacro macros/physics/Bi214.mac

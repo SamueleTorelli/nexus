@@ -1,0 +1,32 @@
+/Generator/SingleParticle/particle e+
+/Generator/SingleParticle/min_energy 250 keV
+/Generator/SingleParticle/max_energy 250 keV
+/Generator/SingleParticle/region PHANTOM
+
+/Geometry/PETCsI/crystal_length 2
+/Geometry/PETCsI/crystal_material BGO
+/Geometry/PETCsI/crystal_width 48 mm
+/Geometry/PETCsI/pet_diameter 80 cm
+/Geometry/PETCsI/pet_length 30 cm
+/Geometry/PETCsI/phantom sensitivity
+/Geometry/PETCsI/mixed false
+
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+/process/em/verbose 0
+
+/PhysicsList/RegisterPhysics G4EmStandardPhysics_option4
+/PhysicsList/RegisterPhysics G4StoppingPhysics
+/PhysicsList/RegisterPhysics G4StepLimiterPhysics
+/PhysicsList/RegisterPhysics NexusPhysics
+#/PhysicsList/RegisterPhysics G4OpticalPhysics
+#/process/optical/processActivation Cerenkov true
+
+/Actions/DefaultEventAction/min_energy 0.700 MeV
+#/Actions/DefaultEventAction/max_energy 1.100 MeV
+
+### JOB CONTROL
+/nexus/random_seed            1
+/nexus/persistency/start_id   0
+/nexus/persistency/output_file CRYSPSensitivity_mixed

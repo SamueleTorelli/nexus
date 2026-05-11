@@ -1,0 +1,13 @@
+## ----------------------------------------------------------------------------
+## nexus | IonizationElectron.mac
+##
+## Physics macro that results in the definition of the ionization electron
+## with no attached physics processes.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/PhysicsList/Nexus/clustering          false
+/PhysicsList/Nexus/drift               false
+/PhysicsList/Nexus/electroluminescence false
+/PhysicsList/Nexus/photoelectric       false

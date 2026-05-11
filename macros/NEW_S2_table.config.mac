@@ -1,0 +1,28 @@
+## ----------------------------------------------------------------------------
+## nexus | NEW_S2_table.config.mac
+##
+## Configuration macro to simulate secondary scintillation light
+## for look-up tables in the NEW detector.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+
+/nexus/random_seed -2
+
+/Geometry/NextNew/elfield true
+## pressure must be set in bar!!!
+/Geometry/NextNew/pressure 15. bar
+/Geometry/NextNew/el_table_binning 1. mm
+/Geometry/NextNew/el_table_point_id 0
+
+/Generator/ELTableGenerator/num_ie 100
+
+/PhysicsList/Nexus/photoelectric false
+
+/nexus/persistency/output_file table.NEW.next

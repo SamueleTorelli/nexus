@@ -1,0 +1,46 @@
+## ----------------------------------------------------------------------------
+## nexus | NEW_valid_isotope.config.mac
+##
+## Configuration macro to simulate K-40, Co-60, Bi214 and Tl-208
+## decays to test gamma production in different versions of GEANT4.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+#VERBOSITY
+/run/verbose 1
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+
+# GEOMETRY
+/Geometry/NextNew/pressure 15. bar
+/Geometry/NextNew/elfield false
+
+# GENERATION - K40
+/Generator/IonGenerator/atomic_number 19
+/Generator/IonGenerator/mass_number 40
+/Generator/IonGenerator/region DICE_BOARD
+
+# Co-60
+#/Generator/IonGenerator/atomic_number 27
+#/Generator/IonGenerator/mass_number 60
+# Bi-214
+#/Generator/IonGenerator/atomic_number 83
+#/Generator/IonGenerator/mass_number 214
+# Tl-208
+#/Generator/IonGenerator/atomic_number 81
+#/Generator/IonGenerator/mass_number 208
+
+# PHYSICS
+/PhysicsList/Nexus/clustering          false
+/PhysicsList/Nexus/drift               false
+/PhysicsList/Nexus/electroluminescence false
+
+# ACTIONS
+/Actions/ValidationTrackingAction/valid_file NEW_valid.isotope.DICE_BOARD.csv
+
+# PERSISTENCY
+/nexus/persistency/event_type background
+/nexus/persistency/output_file NEW_valid.isotope.DICE_BOARD.next

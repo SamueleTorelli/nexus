@@ -1,0 +1,55 @@
+### -----------------------------------------------------------
+## nexus | NEW_internal_source.config.mac
+##
+## Configuration macro to simulate the activity of a specific calibration
+## source in the NEXT-WHITE detector. The source is placed inside one of the
+## ports inside the feedthrough, at configurable distance
+## from the most internal part of the feedthrough.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+# Verbosity
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+# Geometry
+/Geometry/NextNew/pressure 7. bar
+/Geometry/NextNew/elfield false
+/Geometry/CalibrationSource/source Na
+## lateral/axial/upper
+/Geometry/NextNew/internal_calib_port axial
+## In the axial port, source_distance can vary from 0. to 759 mm
+## In the lateral port, source_distance can vary from 0. to 81 mm
+## In the upper port, source_distance can vary from 0. to 93 mm
+/Geometry/NextNew/source_distance 0. mm
+## When the axial port is selected, the castle must be open
+/Geometry/NextNew/lead_castle false
+
+## For visualization
+/Geometry/NextNew/shielding_vis false
+/Geometry/NextNew/table_vis false
+/Geometry/NextNew/ics_vis false
+/Geometry/NextNew/energy_plane_vis false
+/Geometry/NextNew/enclosure_vis false
+/Geometry/NextNew/tracking_plane_vis false
+/Geometry/NextNew/field_cage_vis false
+/Geometry/NextNew/vessel_vis false
+/Geometry/KDB/visibility false
+/Geometry/KDB/sipm_visibility false
+/Geometry/PmtR11410/visibility false
+
+# Generator
+/Generator/IonGenerator/atomic_number 11
+/Generator/IonGenerator/mass_number 22
+## ANODE/AXIAL/UPPER
+/Generator/IonGenerator/region INTERNAL_PORT_AXIAL
+
+# Physics
+/PhysicsList/Nexus/clustering          false
+/PhysicsList/Nexus/drift               false
+/PhysicsList/Nexus/electroluminescence false
+
+# Persistency
+/nexus/persistency/output_file New.source.next

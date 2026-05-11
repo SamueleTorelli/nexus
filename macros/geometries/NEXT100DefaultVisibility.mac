@@ -1,0 +1,17 @@
+## ----------------------------------------------------------------------------
+## nexus | NEXT100DefaultVisibility.mac
+##
+## Ancillary macro to set the default visibility of the NEXT-100 geometry.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/Geometry/Next100/shielding_vis       false
+/Geometry/Next100/vessel_vis          false
+/Geometry/Next100/ics_vis             false
+/Geometry/Next100/field_cage_vis      true
+/Geometry/Next100/energy_plane_vis    true
+/Geometry/Next100/tracking_plane_vis  true
+/Geometry/Next100/sipm_board_vis      true
+/Geometry/Next100/sipm_vis            false
+/Geometry/PmtR11410/visibility        true

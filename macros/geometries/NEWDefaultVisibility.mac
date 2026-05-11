@@ -1,0 +1,20 @@
+## ----------------------------------------------------------------------------
+## nexus | NEWDefaultVisibility.mac
+##
+## Ancillary macro to set the default visibility of the NEW geometry.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/Geometry/NextNew/shielding_vis     false
+/Geometry/NextNew/table_vis         false
+/Geometry/NextNew/minicastle_vis    false
+/Geometry/NextNew/ics_vis           false
+/Geometry/NextNew/vessel_vis        false
+/Geometry/NextNew/field_cage_vis    false
+/Geometry/NextNew/energy_plane_vis   true
+/Geometry/NextNew/enclosure_vis      true
+/Geometry/NextNew/tracking_plane_vis true
+/Geometry/KDB/visibility            false
+/Geometry/KDB/sipm_visibility       false
+/Geometry/PmtR11410/visibility       true

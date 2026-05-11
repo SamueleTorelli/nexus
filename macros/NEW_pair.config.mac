@@ -1,0 +1,28 @@
+## ----------------------------------------------------------------------------
+## nexus | NEW_pair.config.mac
+##
+## Configuration macro to simulate an e+e- pair in the NEW detector geometry.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+
+# Geometry
+/Geometry/NextNew/elfield 0
+/Geometry/NextNew/max_step_size 1. mm
+/Geometry/NextNew/pressure 7. bar
+/Geometry/NextNew/field_cage_vis true
+
+### Generation
+/Generator/ElecPositronPair/min_energy 1.592 MeV
+/Generator/ElecPositronPair/max_energy 1.592 MeV
+/Generator/ElecPositronPair/region ACTIVE
+
+/control/execute macros/physics/IonizationElectron.mac
+
+/nexus/persistency/output_file myoutput.next

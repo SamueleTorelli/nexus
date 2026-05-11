@@ -1,0 +1,33 @@
+## ----------------------------------------------------------------------------
+## nexus | NEW.config.mac
+##
+## Configuration macro to simulate Bi-214 radioactive decays from the dice
+## boards in the NEW detector.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/Geometry/NextNew/pressure 10. bar
+/Geometry/NextNew/elfield false
+
+/control/execute macros/geometries/NEWDefaultVisibility.mac
+
+/Generator/IonGenerator/atomic_number 83
+/Generator/IonGenerator/mass_number 214
+/Generator/IonGenerator/region DICE_BOARD
+
+/Actions/DefaultEventAction/min_energy 0.6 MeV
+
+/PhysicsList/Nexus/clustering          false
+/PhysicsList/Nexus/drift               false
+/PhysicsList/Nexus/electroluminescence false
+/PhysicsList/Nexus/photoelectric       false
+
+/nexus/persistency/event_type background
+/nexus/persistency/output_file NextNew.Bi214.DICE_BOARD.next
+
+/process/em/verbose 0

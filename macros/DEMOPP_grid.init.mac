@@ -1,0 +1,27 @@
+## ----------------------------------------------------------------------------
+## nexus | DEMOPP_grid.init.mac
+##
+## Initialization macro to simulate electrons in the DEMO++ geometry
+## with a grid as anode.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+
+/PhysicsList/RegisterPhysics G4EmStandardPhysics_option4
+/PhysicsList/RegisterPhysics G4DecayPhysics
+/PhysicsList/RegisterPhysics G4RadioactiveDecayPhysics
+/PhysicsList/RegisterPhysics NexusPhysics
+/PhysicsList/RegisterPhysics G4StepLimiterPhysics
+
+/nexus/RegisterGeometry NextDemo
+
+/nexus/RegisterGenerator SingleParticleGenerator
+
+/nexus/RegisterPersistencyManager PersistencyManager
+
+/nexus/RegisterTrackingAction DefaultTrackingAction
+/nexus/RegisterEventAction DefaultEventAction
+/nexus/RegisterRunAction DefaultRunAction
+
+/nexus/RegisterMacro macros/DEMOPP_grid.config.mac

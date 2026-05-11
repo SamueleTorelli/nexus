@@ -1,0 +1,22 @@
+## ----------------------------------------------------------------------------
+## nexus | nexus_example3.init.mac
+##
+## Initialization macro to simulate individual particles
+## in the NEXT-DEMO detector.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/control/execute macros/physics/DefaultPhysicsList.mac
+
+/nexus/RegisterGeometry Next1EL
+
+/nexus/RegisterGenerator SingleParticleGenerator
+
+/nexus/RegisterPersistencyManager PersistencyManager
+
+/nexus/RegisterTrackingAction DefaultTrackingAction
+/nexus/RegisterEventAction DefaultEventAction
+/nexus/RegisterSteppingAction AnalysisSteppingAction
+
+/nexus/RegisterMacro macros/nexus_example3.config.mac
