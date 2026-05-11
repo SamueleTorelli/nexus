@@ -79,12 +79,33 @@ void PersistencyManager::OpenFile()
   // If the output file was not set yet, do so
   if (!h5writer_) {
     h5writer_ = new HDF5Writer();
-    G4String hdf5file = output_file_ + ".h5";
+    G4String hdf5file = GetUniqueOutputFileName();
     h5writer_->Open(hdf5file, store_steps_);
     return;
   } else {
     G4Exception("[PersistencyManager]", "OpenFile()",
 		JustWarning, "An output file was previously opened.");
+  }
+}
+
+
+
+G4String PersistencyManager::GetUniqueOutputFileName() const
+{
+  const G4String base = output_file_;
+  G4String candidate = base + ".h5";
+
+  std::ifstream file(candidate.c_str(), std::ifstream::in);
+  if (!file.good())
+    return candidate;
+  file.close();
+
+  for (int suffix = 1; ; ++suffix) {
+    candidate = base + "_" + std::to_string(suffix) + ".h5";
+    std::ifstream numbered(candidate.c_str(), std::ifstream::in);
+    if (!numbered.good())
+      return candidate;
+    numbered.close();
   }
 }
 

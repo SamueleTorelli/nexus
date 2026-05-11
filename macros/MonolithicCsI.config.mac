@@ -37,4 +37,4 @@
 
 ### JOB CONTROL
 #/nexus/random_seed            1
-/nexus/persistency/output_file output/MonolithicCsI_2
+/nexus/persistency/output_file output/MonolithicCsI

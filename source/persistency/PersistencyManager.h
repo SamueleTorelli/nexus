@@ -61,6 +61,7 @@ namespace nexus {
 
 
   private:
+    G4String GetUniqueOutputFileName() const;
     void StoreTrajectories(G4TrajectoryContainer*);
     void StoreHits(G4HCofThisEvent*);
     void StoreIonizationHits(G4VHitsCollection*);
