@@ -47,8 +47,6 @@ void AnalysisSteppingAction::UserSteppingAction(const G4Step* step)
 {
   G4ParticleDefinition* pdef = step->GetTrack()->GetDefinition();
 
-  G4cout << "here" << G4endl;
-  
   //Check whether the track is an optical photon
   if (pdef != G4OpticalPhoton::Definition()) return;
 

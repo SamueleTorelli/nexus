@@ -18,6 +18,6 @@
 /nexus/RegisterRunAction DefaultRunAction
 /nexus/RegisterEventAction DefaultEventAction
 /nexus/RegisterTrackingAction DefaultTrackingAction
-/nexus/RegisterSteppingAction GammaInteractionSteppingAction
+/nexus/RegisterSteppingAction AnalysisSteppingAction
 
 /nexus/RegisterMacro macros/CylindricChamber_2nubpbp_decay0.config.mac

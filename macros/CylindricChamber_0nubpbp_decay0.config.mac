@@ -30,4 +30,4 @@
 /control/execute macros/physics/IonizationElectron.mac
 
 /nexus/persistency/safename true
-/nexus/persistency/output_file output/2nubpbpLKr_50000.nexus
+/nexus/persistency/output_file output/0nubpbp_LKr_decay0_2mm_10000.nexus
