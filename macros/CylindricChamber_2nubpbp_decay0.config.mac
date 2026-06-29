@@ -27,6 +27,8 @@
 /Generator/Decay0DoublePositronInterface/Ba136FinalState 0
 /Generator/Decay0DoublePositronInterface/EnergyThreshold 1 keV
 
+/Actions/ROIEventAction/positron_energy_threshold 2.6 MeV
+
 /control/execute macros/physics/IonizationElectron.mac
 
 /nexus/persistency/safename true

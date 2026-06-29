@@ -32,7 +32,7 @@
 /control/execute macros/physics/DefaultPhysicsList.mac
 
 /Actions/DefaultEventAction/min_energy 1000 keV
-/Actions/DefaultEventAction/max_energy 2850 keV
+/Actions/DefaultEventAction/max_energy 3500 keV
 /Actions/SingleDecaySteppingAction/DefineSingle 214 83
 
 /nexus/persistency/output_file output/GXe_214Bi_15bar_200mum_step_300000.next
