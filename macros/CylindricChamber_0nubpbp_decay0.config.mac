@@ -1,0 +1,33 @@
+## ----------------------------------------------------------------------------
+## nexus | nexus_example1.config.mac
+##
+## Configuration macro to simulate individual particles
+## in a sphere of xenon.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+/process/em/verbose 0
+
+/nexus/random_seed -1
+
+
+/Geometry/CylindricChamber/targetmaterial LKr
+/Geometry/CylindricChamber/pressure 1 bar
+/Geometry/CylindricChamber/step_max 1 mm #in millimeters
+
+/Generator/Decay0DoublePositronInterface/region ACTIVE
+/Generator/Decay0DoublePositronInterface/QValue 2.846
+/Generator/Decay0DoublePositronInterface/Xe136DecayMode 1 
+#1 is for the 0numode 4 is for the 2numode
+
+/Generator/Decay0DoublePositronInterface/Ba136FinalState 0
+/Generator/Decay0DoublePositronInterface/EnergyThreshold 1 keV
+
+/control/execute macros/physics/IonizationElectron.mac
+
+/nexus/persistency/safename true
+/nexus/persistency/output_file output/2nubpbpLKr_50000.nexus

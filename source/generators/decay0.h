@@ -60,6 +60,7 @@ class decay0 {
      ~decay0();
     void decay0DoIt(std::vector<decay0Part> &outPart) const ;
     void fillInfo(); // to be used if the Nuclide, final state or decay mode is changed...Not advised..
+    void SetQValue(double qValueMeV);
      void printDecayModeList(); // For reference
 
 
@@ -67,6 +68,8 @@ class decay0 {
     std::string fname_;
     bool ready_; // Initialize, ready to decay
     double emass_; // electron mass
+    bool useCustomQbb_;
+    double qbbOverrideMeV_;
     std::string nuclideName_;
     size_t fsNum_;
     size_t modebb_;

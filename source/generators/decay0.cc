@@ -40,6 +40,8 @@ itrans02_(itr2)
 decay0::decay0():
 ready_(false),
 emass_(0.51099906),
+useCustomQbb_(false),
+qbbOverrideMeV_(0.0),
 nuclideName_("Xe136"),
 fsNum_(0),
 modebb_(0),
@@ -56,6 +58,8 @@ decay0::decay0(const std::string nuclide, int finalStateNumber,
   fname_(fname),
   ready_(false),
   emass_(0.51099906),
+  useCustomQbb_(false),
+  qbbOverrideMeV_(0.0),
   nuclideName_(nuclide),
   fsNum_(finalStateNumber),
   modebb_(decayModeNumber),
@@ -76,6 +80,13 @@ decay0::~decay0() {
   if (gwk_ == 0) return;
   gsl_integration_workspace_free (gwk_);
 }
+
+void decay0::SetQValue(double qValueMeV) {
+  useCustomQbb_ = true;
+  qbbOverrideMeV_ = qValueMeV;
+  fillInfo();
+}
+
 void decay0::fillInfo() {
    ready_ = false;
    if (modebb_ == 18) {
@@ -89,7 +100,7 @@ void decay0::fillInfo() {
   bbNucl_.name_=nuclideName_;
    if (nuclideName_ == std::string("Xe136")) {
 //    bbNucl_.Qbb_ = 2457.83; // in keV
-    bbNucl_.Qbb_ = 2.45783; // in MeV  Let us use consistent units and avoid dividing by 1000., here and there....
+    bbNucl_.Qbb_ = useCustomQbb_ ? qbbOverrideMeV_ : 2.45783; // in MeV  Let us use consistent units and avoid dividing by 1000., here and there....
     bbNucl_.Zdbb_ = 56.;
     bbNucl_.Adbb_ = 136.;
     bbNucl_.EK_ = 0.;

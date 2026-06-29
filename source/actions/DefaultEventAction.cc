@@ -86,24 +86,28 @@ REGISTER_CLASS(DefaultEventAction, G4UserEventAction)
 
       G4TrajectoryContainer* tc = event->GetTrajectoryContainer();
       if (tc) {
-        // in interactive mode, a G4TrajectoryContainer would exist
-        // but the trajectories will not cast to Trajectory
-        Trajectory* trj = dynamic_cast<Trajectory*>((*tc)[0]);
-        if (trj == nullptr){
-          G4Exception("[DefaultEventAction]", "EndOfEventAction()", FatalException,
-                      "The trajectory container is empty. If you are simulating optical photons as primary particles,"
-                      " and not using OpticalTrackingAction, you should use the G4 default event action.");
-        }
         for (unsigned int i=0; i<tc->size(); ++i) {
           Trajectory* tr = dynamic_cast<Trajectory*>((*tc)[i]);
-          edep += tr->GetEnergyDeposit();
+          if (tr) edep += tr->GetEnergyDeposit();
         }
       }
-      else {
-        G4Exception("[DefaultEventAction]", "EndOfEventAction()", FatalException,
-                    "The trajectory container doesn't exist. Check that you are using DefaultTrackingAction."
-                    " Notice that, if you are simulating optical photons as primary particles, "
-                    "and not using OpticalTrackingAction, you should not specify any event actions.");
+
+      G4HCofThisEvent* hce = event->GetHCofThisEvent();
+      if (hce && edep == 0.) {
+        G4SDManager* sdmgr = G4SDManager::GetSDMpointer();
+        G4HCtable* hct = sdmgr->GetHCtable();
+        for (auto i = 0; i < hct->entries(); ++i) {
+          G4String hcname = hct->GetHCname(i);
+          G4String sdname = hct->GetSDname(i);
+          int hcid = sdmgr->GetCollectionID(sdname + "/" + hcname);
+          G4VHitsCollection* hits = hce->GetHC(hcid);
+          auto* ion_hits = dynamic_cast<IonizationHitsCollection*>(hits);
+          if (!ion_hits) continue;
+          for (size_t j = 0; j < ion_hits->entries(); ++j) {
+            IonizationHit* hit = dynamic_cast<IonizationHit*>(ion_hits->GetHit(j));
+            if (hit) edep += hit->GetEnergyDeposit();
+          }
+        }
       }
 
       PersistencyManager* pm = dynamic_cast<PersistencyManager*>
