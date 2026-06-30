@@ -17,7 +17,7 @@
 class G4GenericMessenger;
 class G4Event;
 class G4PrimaryParticle;
-class decay0;
+#include "decay0.h"
 
 namespace nexus {
 
@@ -43,7 +43,6 @@ namespace nexus {
 
     double qValueMeV_;
     double energyThreshold_;
-    int myEventCounter_;
 
     std::ofstream fOutDebug_;
     const GeometryBase* geom_;
@@ -51,7 +50,10 @@ namespace nexus {
     inline void SetEnergyThreshold(double e) { energyThreshold_ = e; }
     inline void SetXe136DecayMode(int dcm) { Xe136DecayMode_ = dcm; }
     inline void SetBa136FinalState(int fs) { Ba136FinalState_ = fs; }
-    inline void SetQValue(double q) { qValueMeV_ = q; }
+    inline void SetQValue(double q) {
+      qValueMeV_ = q;
+      if (decay0_ != 0 && q > 0.) decay0_->SetQValue(q);
+    }
   };
 
 } // end namespace nexus

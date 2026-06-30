@@ -54,9 +54,9 @@ class decay0 {
   public:
 
      decay0();
-     decay0(const std::string nuclide, int finalStateNumber,
-            int decayModeNumber, std::string fname, double eRangeLow=0.0,
-            double eRangeHigh=4.3); // no limits, be default. (for 2nbbdecay. )
+         decay0(const std::string nuclide, int finalStateNumber,
+           int decayModeNumber, std::string fname, double qValueMeV = 0.0,
+           double eRangeLow=0.0, double eRangeHigh=4.3); // no limits, be default. (for 2nbbdecay. )
      ~decay0();
     void decay0DoIt(std::vector<decay0Part> &outPart) const ;
     void fillInfo(); // to be used if the Nuclide, final state or decay mode is changed...Not advised..

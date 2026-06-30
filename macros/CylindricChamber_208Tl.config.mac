@@ -18,7 +18,7 @@
 
 /Geometry/CylindricChamber/targetmaterial LKr
 /Geometry/CylindricChamber/pressure 1 bar
-/Geometry/CylindricChamber/step_max 1 mm #in millimeters
+/Geometry/CylindricChamber/step_max 2 mm #in millimeters
 
 #/Generator/SingleParticle/particle gamma
 #/Generator/SingleParticle/min_energy 2.457 MeV
@@ -35,4 +35,5 @@
 /Actions/DefaultEventAction/max_energy 3500 keV
 /Actions/SingleDecaySteppingAction/DefineSingle 208 81
 
-/nexus/persistency/output_file output/GXe_208Tl_15bar_200mum_step_300000.next
+/nexus/persistency/safename true
+/nexus/persistency/output_file output/background/208Tl/LKr_208Tl_2mm_step.next

@@ -17,6 +17,7 @@
 #include <G4PrimaryParticle.hh>
 #include <G4VPersistencyManager.hh>
 #include <globals.hh>
+#include <CLHEP/Units/SystemOfUnits.h>
 
 namespace nexus {
 
@@ -77,7 +78,7 @@ void ROIEventAction::EndOfEventAction(const G4Event* event)
     pm->InteractingEvent(false);
   }
 
-  if (!event->IsAborted() && positron_energy_sum > positron_energy_threshold_ * MeV) {
+  if (!event->IsAborted() && positron_energy_sum > positron_energy_threshold_ * CLHEP::MeV) {
     pm->StoreCurrentEvent(true);
   } else {
     pm->StoreCurrentEvent(false);

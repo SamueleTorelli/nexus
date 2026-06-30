@@ -53,13 +53,13 @@ modebbOld_(0)
   fillInfo();
 }
 decay0::decay0(const std::string nuclide, int finalStateNumber,
-               int decayModeNumber, std::string fname,
-               double eRangeLow, double eRangeHigh):
+							 int decayModeNumber, std::string fname,
+							 double qValueMeV, double eRangeLow, double eRangeHigh):
   fname_(fname),
   ready_(false),
   emass_(0.51099906),
-  useCustomQbb_(false),
-  qbbOverrideMeV_(0.0),
+	useCustomQbb_(qValueMeV > 0.),
+	qbbOverrideMeV_(qValueMeV > 0. ? qValueMeV : 2.45783),
   nuclideName_(nuclide),
   fsNum_(finalStateNumber),
   modebb_(decayModeNumber),

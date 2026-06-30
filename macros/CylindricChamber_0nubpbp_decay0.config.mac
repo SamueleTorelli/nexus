@@ -17,7 +17,7 @@
 
 /Geometry/CylindricChamber/targetmaterial LKr
 /Geometry/CylindricChamber/pressure 1 bar
-/Geometry/CylindricChamber/step_max 1 mm #in millimeters
+/Geometry/CylindricChamber/step_max 2 mm #in millimeters
 
 /Generator/Decay0DoublePositronInterface/region ACTIVE
 /Generator/Decay0DoublePositronInterface/QValue 2.846
@@ -30,4 +30,4 @@
 /control/execute macros/physics/IonizationElectron.mac
 
 /nexus/persistency/safename true
-/nexus/persistency/output_file output/0nubpbp_LKr_decay0_2mm_10000.nexus
+/nexus/persistency/output_file output/signal/0nubpbp_d0/LKr_0nubpbp_decay0_2mm.nexus

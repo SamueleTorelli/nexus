@@ -34,7 +34,7 @@ REGISTER_CLASS(Decay0DoublePositronInterface, G4VPrimaryGenerator)
 Decay0DoublePositronInterface::Decay0DoublePositronInterface():
   G4VPrimaryGenerator(), msg_(0), decay_file_("th-e1-spectrum.dat"),
   region_(""), decay0_(0), Xe136DecayMode_(1), Ba136FinalState_(0),
-  qValueMeV_(2.45783), energyThreshold_(0.), myEventCounter_(0), geom_(0)
+  qValueMeV_(0.), energyThreshold_(0.), geom_(0)
 {
   msg_ = new G4GenericMessenger(this, "/Generator/Decay0DoublePositronInterface/",
     "Control commands of the DECAY0 positron interface.");
@@ -44,7 +44,13 @@ Decay0DoublePositronInterface::Decay0DoublePositronInterface():
   msg_->DeclareProperty("decay_file", decay_file_,
                         "Name of the file with the decay info");
 
-  msg_->DeclareMethod("EnergyThreshold", &Decay0DoublePositronInterface::SetEnergyThreshold, "");
+  G4GenericMessenger::Command& energy_threshold_cmd =
+    msg_->DeclareProperty("EnergyThreshold", energyThreshold_,
+                          "Minimum total positron kinetic energy required to generate a vertex.");
+  energy_threshold_cmd.SetParameterName("EnergyThreshold", true);
+  energy_threshold_cmd.SetUnitCategory("Energy");
+  energy_threshold_cmd.SetRange("EnergyThreshold>=0.");
+
   msg_->DeclareMethod("Xe136DecayMode", &Decay0DoublePositronInterface::SetXe136DecayMode, "");
   msg_->DeclareMethod("Ba136FinalState", &Decay0DoublePositronInterface::SetBa136FinalState, "");
   msg_->DeclareMethod("QValue", &Decay0DoublePositronInterface::SetQValue, "");
@@ -65,39 +71,38 @@ void Decay0DoublePositronInterface::GeneratePrimaryVertex(G4Event* event)
 {
   if (decay0_ == 0) {
     const std::string XeName("Xe136");
-    decay0_ = new decay0(XeName, Ba136FinalState_, Xe136DecayMode_, decay_file_);
-  }
-
-  if (qValueMeV_ > 0.) {
-    decay0_->SetQValue(qValueMeV_);
+    decay0_ = new decay0(XeName, Ba136FinalState_, Xe136DecayMode_, decay_file_, qValueMeV_);
   }
 
   std::vector<decay0Part> theParts;
-  decay0_->decay0DoIt(theParts);
+  G4double positronEnergySum = 0.;
+  bool keepEvt = false;
 
-  double eTotKin = 0.;
-  for (std::vector<decay0Part>::const_iterator itp = theParts.begin();
-       itp != theParts.end(); itp++) {
-    if (std::abs(itp->pdgCode_) == 11) eTotKin += itp->energy_;
-  }
+  do {
+    theParts.clear();
+    decay0_->decay0DoIt(theParts);
 
-  const bool keepEvt = eTotKin > energyThreshold_;
-  myEventCounter_++;
+    positronEnergySum = 0.;
+    for (std::vector<decay0Part>::const_iterator itp = theParts.begin();
+         itp != theParts.end(); itp++) {
+      if (std::abs(itp->pdgCode_) == 11) positronEnergySum += itp->energy_;
+    }
+
+    keepEvt = positronEnergySum > energyThreshold_;
+  } while (!keepEvt);
 
   G4cout << "[Decay0DoublePositronInterface] event " << event->GetEventID()
-         << " positron energy sum = " << eTotKin/MeV << " MeV" << G4endl;
+         << " positron energy sum = " << positronEnergySum/MeV << " MeV" << G4endl;
 
   if (fOutDebug_.is_open() && keepEvt) {
     int k = 0;
     for (std::vector<decay0Part>::const_iterator itp = theParts.begin();
          itp != theParts.end(); itp++, k++) {
-      fOutDebug_ << " " << myEventCounter_ << " " << k << " " << itp->pdgCode_ << " "
+      fOutDebug_ << " " << event->GetEventID() << " " << k << " " << itp->pdgCode_ << " "
                  << itp->pmom_[0] << " " << itp->pmom_[1] << " " << itp->pmom_[2] << " "
                  << itp->energy_ << " " << itp->time_ << std::endl;
     }
   }
-
-  if (!keepEvt) return;
 
   G4ThreeVector particle_position = geom_->GenerateVertex(region_);
 
