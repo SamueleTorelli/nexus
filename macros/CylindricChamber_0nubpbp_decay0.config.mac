@@ -20,7 +20,7 @@
 /Geometry/CylindricChamber/step_max 2 mm #in millimeters
 
 /Generator/Decay0DoublePositronInterface/region ACTIVE
-/Generator/Decay0DoublePositronInterface/QValue 2.846
+/Generator/Decay0DoublePositronInterface/QValue 0.802
 /Generator/Decay0DoublePositronInterface/Xe136DecayMode 1 
 #1 is for the 0numode 4 is for the 2numode
 

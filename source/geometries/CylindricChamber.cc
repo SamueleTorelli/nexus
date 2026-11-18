@@ -43,8 +43,8 @@ namespace nexus {
     e_lifetime_(1000. * ms),
     pressure_   (13.5 * bar),
     temperature_(293. * kelvin),
-    chamber_diam_   (25. * cm),
-    chamber_length_ (50. * cm),
+    chamber_diam_   (30.8 * cm),
+    chamber_length_ (30.8 * cm),
     chamber_thickn_ (  3.0 * cm),
     step_max_(1.0 * mm)
   {

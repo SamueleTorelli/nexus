@@ -1,0 +1,39 @@
+## ----------------------------------------------------------------------------
+## nexus | CylindricChamber_bb0nu.config.mac
+##
+## Configuration macro to simulate bb0nu decays in a generic geometry of a GXe or LXe cylinder enclosed in a vessel.
+##
+## The NEXT Collaboration
+## ----------------------------------------------------------------------------
+
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+
+/process/em/verbose 0
+
+/nexus/random_seed -1
+
+#/Geometry/CylindricChamber/targetmaterial LXe
+
+/Geometry/CylindricChamber/targetmaterial LKr
+/Geometry/CylindricChamber/pressure 1 bar
+/Geometry/CylindricChamber/step_max 2 mm #in millimeters
+
+#/Generator/SingleParticle/particle gamma
+#/Generator/SingleParticle/min_energy 2.457 MeV
+#/Generator/SingleParticle/max_energy 2.458 MeV
+#/Generator/SingleParticle/region CHAMBER
+
+/Generator/IonGenerator/atomic_number 19
+/Generator/IonGenerator/mass_number 40
+/Generator/IonGenerator/region CHAMBER
+
+/control/execute macros/physics/DefaultPhysicsList.mac
+
+/Actions/DefaultEventAction/min_energy 100 keV
+/Actions/DefaultEventAction/max_energy 3500 keV
+/Actions/SingleDecaySteppingAction/DefineSingle 214 83
+
+/nexus/persistency/safename true
+/nexus/persistency/output_file output/background/40K/LKr_40K_2mm_step.next
